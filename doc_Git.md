@@ -1,19 +1,19 @@
 Git - Windows
 =================================================
 
-# Configurer Git
-set PATH=C:\Program Files\Git\bin
+### Configurer Git
+    set PATH=C:\Program Files\Git\bin
 
-# Vérifier les réglages
-git config --list
+### Vérifier les réglages
+    git config --list
 
-# Configurer le nom d'utilisateur
-git config --global user.name "Gerard KESSE"
+### Configurer le nom d'utilisateur
+    git config --global user.name "Gerard KESSE"
 
-# Configurer l'adresse email
+### Configurer l'adresse email
 git config --global user.email tiakagerard@hotmail.com
 
-# Configurer l’éditeur de texte
+### Configurer l’éditeur de texte
 git config --global core.editor "'C:/Program Files (x86)/Notepad++/notepad++.exe' -multiInst -notabbar -nosession -noPlugin"
 
 #================================================
