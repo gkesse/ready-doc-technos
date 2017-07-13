@@ -174,7 +174,7 @@ Create new
 New repository
 Owner -> gkesse
 Repository name -> ReadyDoc
-Description -> Recueil de Documentation Technique
+Description -> Recueil de Documentations Techniques
 Public
 Create repository
 ----------
