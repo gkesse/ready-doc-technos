@@ -16,9 +16,10 @@ git config --global user.email tiakagerard@hotmail.com
 ### Configurer l’éditeur de texte
 git config --global core.editor "'C:/Program Files (x86)/Notepad++/notepad++.exe' -multiInst -notabbar -nosession -noPlugin"
 
-#================================================
-# Git - ReadyDev
-#================================================
+-------------------------------------------------
+
+Git - ReadyDev
+=================================================
 
 # Vérifier les réglages
 git config --list
