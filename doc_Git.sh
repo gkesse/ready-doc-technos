@@ -95,7 +95,12 @@ git add --all
 
 # Valider les modifications
 git commit -m "Initial Commit"
-git commit -am "Initial Commit"
+git commit -m "Using JSON File Format"
+
+# Rectifier le message de validation
+git commit --amend
+----------
+Using JSON File Format
 
 # Pousser une branche sur un serveur distant
 git push -u origin master
@@ -103,16 +108,51 @@ git push -u origin master
 gkesse
 git46RDv
 
+#------------------------------------------------
+# Créer une branche locale
+git branch using_json
+
+# basculer sur une branche locale
+git checkout using_json
+git checkout master
+
+# fusionner des branches locales
+git checkout master
+git merge using_json
+
+# fusionner une branche locale avec une branche distante
+git merge origin/using_json
+
+# Pousser une branche locale
+git push -u origin using_json
+
+# Pousser une branche avec un autre nom
+git push -u origin using_json:autre_nom
+
+#------------------------------------------------
 # Afficher l'état d'un dépôt Git
 git status
 
 # Afficher les serveurs distants
 git remote
+
+# Afficher les serveurs distants avec des infos
 git remote -v
 
-# Afficher la liste des branches courantes
+# Afficher les branches
 git branch
+
+# Afficher les branches avec des infos
 git branch -v
+
+# Afficher les branches qui ont été mergées
+git branch --merged
+
+# Afficher les branches qui n'ont pas été mergées
+git branch --no-merged
+
+# Afficher les branches distantes
+git ls-remote
 
 #------------------------------------------------
 # Supprimer un fichier ou un répertoire suivi
@@ -125,6 +165,12 @@ git rm -r unix/bin
 git rm -r unix/build
 git rm unix/Makefile*
 git rm unix/*user
+    
+# Supprimer une branche locale 
+git branch -d using_json
+
+# Supprimer une branche distante
+git push origin --delete using_json
 
 #================================================
 # Git - ReadyDoc
