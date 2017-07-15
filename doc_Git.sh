@@ -165,7 +165,11 @@ git rm -r unix/bin
 git rm -r unix/build
 git rm unix/Makefile*
 git rm unix/*user
-    
+----------
+git rm -r src\res\json
+git rm -r src\manager\GJson*
+
+
 # Supprimer une branche locale 
 git branch -d using_json
 
