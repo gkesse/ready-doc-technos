@@ -181,3 +181,19 @@ Create repository
 ssh -> git@github.com:gkesse/ReadyDoc.git
 https -> https://github.com/gkesse/ReadyDoc.git
 
+#================================================
+# GitHub - ReadyView
+#================================================
+
+# Créer un répertoire
+Create new
+New repository
+Owner -> gkesse
+Repository name -> ReadyView
+Description -> Interface de Recueil de Vues
+Public
+Create repository
+----------
+ssh -> git@github.com:gkesse/ReadyView.git
+https -> https://github.com/gkesse/ReadyView.git
+

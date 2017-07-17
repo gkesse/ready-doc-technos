@@ -217,3 +217,56 @@ git status
 # Afficher les serveurs distants
 git remote
 git remote -v
+
+#================================================
+# Git - ReadyView
+#================================================
+
+# Vérifier les réglages
+git config --list
+
+# Configurer le nom d'utilisateur
+git config --global user.name "Gerard KESSE"
+
+# Configurer l'adresse email
+git config --global user.email tiakagerard@hotmail.com
+
+# Configurer l’éditeur de texte
+git config --global core.editor nano
+
+# Initialiser un dépôt Git
+git init
+
+# Ajouter un depôt distant
+git remote add origin https://github.com/gkesse/ReadyDB.git
+git remote add origin https://github.com/gkesse/ReadyView.git
+
+# Récupérer les données d'un dépôt distant
+git fetch origin master
+
+# fusionner une branche avec une branche distante
+git merge origin/master
+
+# Suivre tous les fichiers non suivis
+git add --all
+
+# Valider les modifications
+git commit -m "Initial Commit"
+
+# Pousser une branche sur un serveur distant
+git push -u origin master
+----------
+gkesse
+git46RDv
+
+# Afficher l'état d'un dépôt Git
+git status
+
+# Afficher les serveurs distants
+git remote
+git remote -v
+
+#------------------------------------------------
+# Supprimer une référence vers depôt distant
+git remote rm origin 
+
