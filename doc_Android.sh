@@ -1,12 +1,12 @@
 #================================================
-# Android
+# Android Windows
 #================================================
 
 #------------------------------------------------
 # Configurer Java
 #------------------------------------------------
 # (Windows System) Installer Java
--> Installer Java
+http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html
 
 # (Windows System) Configurer la variable d environnement JAVA_HOME
 JAVA_HOME -> JAVA_ROOT_DIR
@@ -28,7 +28,7 @@ javac -version
 # Configurer Eclipse
 #------------------------------------------------
 # (Windows System) Installer Eclipse
--> Installer Eclipse
+https://www.eclipse.org/downloads/packages
 
 # (Windows Terminal) Démarrer Eclipse
 set PATH=C:\Program Files (x86)\Java\jdk1.8.0_77\bin
@@ -52,7 +52,7 @@ Check -> I accept the terms of the licence agreements -> Finish
 # Configurer Android SDK
 #------------------------------------------------
 # (Windows System) Installer Android SDK
- -> Installer Android SDK
+https://dl.google.com/android/repository/sdk-tools-windows-3859397.zip
 
 # (Eclipse GUI) Configurer Android SDK
 Window -> Preferences -> Android
@@ -73,7 +73,7 @@ Check -> Accept Licence -> Install
 # Configurer Android NDK
 #------------------------------------------------
 # (Windows System) Installer Android NDK
- -> Installer Android NDK
+https://dl.google.com/android/repository/android-ndk-r15c-windows-x86.zip
 
 # (Eclipse GUI) Configurer Android NDK
 Window -> Preferences -> Android -> NDK
@@ -87,6 +87,83 @@ set PATH=C:\Program Files (x86)\Java\jdk1.8.0_77\bin
 set PATH=C:\NVPACK\android-ndk-r10d;%PATH%
 set NDK_PROJECT_PATH=C:\NVPACK\android-ndk-r10d\samples\hello-jni
 ndk-build
+
+#================================================
+# Android Linux
+#================================================
+
+#------------------------------------------------
+# Configurer GLibC
+#------------------------------------------------
+# (Linux Terminal) Vérifier GLibC
+ldd --version
+
+#------------------------------------------------
+# Configurer l'exécution des applications 32-bit/64-bit
+#------------------------------------------------
+# (UNIX Terminal) Installer ia32-libs
+sudo apt-get install ia32-libs
+
+#------------------------------------------------
+# Configurer Java
+#------------------------------------------------
+# (Linux Terminal) Installer Java
+sudo apt-get install openjdk-8-jdk
+
+# (Linux Terminal) Vérifier Java
+javac -version
+
+#------------------------------------------------
+# Configurer Android SDK
+#------------------------------------------------
+# (Linux Terminal) Installer Android SDK
+cd ~/dev/AndroidSDK
+wget https://dl.google.com/android/repository/sdk-tools-linux-3859397.zip
+unzip sdk-tools-linux-3859397.zip
+
+#------------------------------------------------
+# Configurer Android NDK
+#------------------------------------------------
+# (Linux Terminal) Installer Android NDK
+cd ~/dev/AndroidNDK
+wget https://dl.google.com/android/repository/android-ndk-r15c-linux-x86_64.zip
+unzip android-ndk-r15c-linux-x86_64.zip
+
+#================================================
+# Android Eclipse
+#================================================
+
+#------------------------------------------------
+# Créer un projet Android
+#------------------------------------------------
+# (Eclipse GUI) Créer un projet Android
+File -> New -> Project
+Android -> Android Application Project -> Next
+Application Name -> GApp
+Project Name -> GProject
+Package Name -> com.pkg.app
+Minimum Required SDK -> API 8: Android 2.2 (Froyo)
+Target SDK -> API 17: Android 4.2 (Jelly Bean)
+Compile With -> API 17: Android 4.2 (Jelly Bean)
+Theme -> Holo Light with Dark Action Bar -> Next
+Check -> Create Custom Launch Icon
+Check -> Create Activity
+Check -> Create Project in Workspace -> Next
+Foreground -> Image
+Foreground Image File -> laucher_icon
+Foreground Scaling -> Center
+Foreground Shape -> Circle
+Background Color -> Blue -> Next
+Check -> Create Activity
+Check -> Blank Activity -> Next
+Activity Name -> MainActivity 
+Activity Name -> activity_main -> Finish
+
+
+
+#================================================
+# Android Definition
+#================================================
 
 #------------------------------------------------
 # Android NDK
@@ -112,10 +189,28 @@ ndk-build
 #------------------------------------------------
 # TADP
 #------------------------------------------------
--> Tegra Android Development Pack
--> Package de Développement Android sous Tegra
--> Fournit des outils pour développer des applications Android
--> Contient Android SDK, Android NDK, OpenCV, PhysX, OpenGL
 -> Tegra est un processeur Mobile de NVIDIA
+-> Permet d accélerer les cartes graphiques
 
+#------------------------------------------------
+# TADP
+#------------------------------------------------
+-> Tegra Android Development Pack
+-> Package de Développement Android
+-> Permet de fournir outils pour développer des applications Android
+-> Contient Android SDK, Android NDK, OpenCV, PhysX, OpenGL
+
+#------------------------------------------------
+# GNU
+#------------------------------------------------
+-> GNUs Not UNIX
+-> GNU N est pas UNIX
+-> Permet de fournir un ensemble de logiciels libres sous UNIX
+
+#------------------------------------------------
+# GLibC
+#------------------------------------------------
+-> GNU C Library
+-> Bibliothèque Standard C du projet GNU
+-> Permet de fournir l ensemble des fichiers entête de la bibliothèque standard C
 
