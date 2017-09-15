@@ -11,5 +11,5 @@ Avec à la fois des compétences en Systèmes Embarqués et en Robotique.
 
 # Liens Utiles
 
-Les liens conçernats Android :
+Les liens conçernants Android :
 * [Android](https://developer.android.com/studio/tools/help/android.html "Android")
