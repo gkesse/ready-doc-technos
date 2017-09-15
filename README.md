@@ -9,11 +9,7 @@ Avec à la fois des compétences en Systèmes Embarqués et en Robotique.
 * Email : [tiakagerard@hotmail.com](mailto:tiakagerard@hotmail.com?subject=Contact&body=Bonjour "Me contactez par email")
 * Localité : **Toulouse - France**
 
-# Documentations Techniques
+# Liens Utiles
 
-**ReadyDoc** propose les documentations techniques suivantes :
-
-* Pour la documentation technique sur Git : **doc_Git.sh**
-* Pour la documentation technique sur GitHub : **doc_GitHub.sh**
-* Pour la documentation technique sur Markdown : **doc_Markdown.sh**
-* Pour la documentation technique sur Qt : **doc_Qt.sh**
+Les liens conçernats Android :
+* [Android](https://developer.android.com/studio/tools/help/android.html "Android")

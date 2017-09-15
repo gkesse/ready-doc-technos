@@ -142,9 +142,9 @@ Android -> Android Application Project -> Next
 Application Name -> GApp
 Project Name -> GProject
 Package Name -> com.pkg.app
-Minimum Required SDK -> API 8: Android 2.2 (Froyo)
-Target SDK -> API 17: Android 4.2 (Jelly Bean)
-Compile With -> API 17: Android 4.2 (Jelly Bean)
+Minimum Required SDK -> API 19: Android 4.4 (KitKat)
+Target SDK -> API 19: Android 4.4 (KitKat)
+Compile With -> API 19: Android 4.4 (KitKat)
 Theme -> Holo Light with Dark Action Bar -> Next
 Check -> Create Custom Launch Icon
 Check -> Create Activity
@@ -159,7 +159,21 @@ Check -> Blank Activity -> Next
 Activity Name -> MainActivity 
 Activity Name -> activity_main -> Finish
 
+# (Eclipse GUI) Créer un dossier jni
+GProject -> Right Click -> New -> Folder
+Folder Name -> jni -> Finish
 
+# (Eclipse GUI) Créer un fichier source natif C
+GProject -> jni -> New -> File
+File Name -> hello.c -> Finish
+
+# (Eclipse GUI) Créer un fichier Makefile Android
+GProject -> jni -> Right Click -> New -> File
+File Name -> Android.mk -> Finish
+
+# (Eclipse GUI) Créer une classe principale MainActivity
+GProject -> gen -> Right Click -> New -> Class
+File Name -> Android.mk -> Finish
 
 #================================================
 # Android Definition
@@ -214,3 +228,9 @@ Activity Name -> activity_main -> Finish
 -> Bibliothèque Standard C du projet GNU
 -> Permet de fournir l ensemble des fichiers entête de la bibliothèque standard C
 
+#------------------------------------------------
+# JNI
+#------------------------------------------------
+-> Java Native Interface
+-> Interface Native Java
+-> Permet d utiliser en Java des fonctionnalités développer dans un langage natif C
