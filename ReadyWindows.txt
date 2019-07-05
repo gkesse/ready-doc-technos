@@ -1,0 +1,65 @@
+#================================================
+# Windows
+#================================================
+# Git
+#================================================
+# L'installation
+https://git-scm.com/
+
+# La configuration
+set USER_NAME="Gerard KESSE"
+set USER_EMAIL="tiakagerard@hotmail.com"
+set CORE_EDITOR=nano
+git config --global user.name "Your Name"
+git config --global user.email "you@example.com"
+git config --global core.editor "Your Name"
+
+# L'initialisation
+set PATH=C:\Program Files\Git\bin
+set GPROJECT_ROOT=C:\Users\Admin\Downloads\Programs
+set GPROJECT=%GPROJECT_ROOT%\ReadyC
+cd %GPROJECT%
+git init
+
+# Le clonage
+set PATH=C:\Program Files\Git\bin
+set GDEPOT=https://github.com/gkesse/ReadyC.git
+set GPROJECT_ROOT=C:\Users\Admin\Downloads\Programs
+set GPROJECT=%GPROJECT_ROOT%\ReadyC
+git clone %GDEPOT% %GPROJECT%
+
+# L'indexation
+set PATH=C:\Program Files\Git\bin
+set GPROJECT_ROOT=C:\Users\Admin\Downloads\Programs
+set GPROJECT=%GPROJECT_ROOT%\ReadyC
+cd %GPROJECT%
+git add --all
+ 
+# L'enregistrement
+set PATH=C:\Program Files\Git\bin
+set GPROJECT_ROOT=C:\Users\Admin\Downloads\Programs
+set GPROJECT=%GPROJECT_ROOT%\ReadyC
+cd %GPROJECT%
+git commit -m "Initial Commit"
+
+# L'envoi
+set PATH=C:\Program Files\Git\bin
+set GPROJECT_ROOT=C:\Users\Admin\Downloads\Programs
+set GPROJECT=%GPROJECT_ROOT%\ReadyC
+cd %GPROJECT%
+git push -u origin master
+
+# L'annulation (indexation)
+set PATH=C:\Program Files\Git\bin
+set GPROJECT_ROOT=C:\Users\Admin\Downloads\Programs
+set GPROJECT=%GPROJECT_ROOT%\ReadyC
+cd %GPROJECT%
+git status
+
+# Le status
+set PATH=C:\Program Files\Git\bin
+set GPROJECT_ROOT=C:\Users\Admin\Downloads\Programs
+set GPROJECT=%GPROJECT_ROOT%\ReadyC
+cd %GPROJECT%
+git status
+

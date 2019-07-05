@@ -1,0 +1,184 @@
+#================================================
+# SVN | CentOs
+#================================================
+# depot (local)
+export GDEPOT=/home/centos/Programs/ReadySVN/GHELLO/REPO
+svnadmin create $GDEPOT
+
+# dossier (local)
+export GPATH=/home/centos/Programs/ReadySVN/DEV/FRENCH/unix
+mkdir -p $GPATH
+
+# dossier (distant)
+export GDEPOT=file:///home/centos/Programs/ReadySVN/GHELLO/REPO
+export GTRUNK=$GDEPOT/trunk
+export GBRANCH=$GDEPOT/branches
+export GFRENCH=$GDEPOT/branches/FRENCH
+export GTAG=$GDEPOT/tags
+export GSNAPSHOT=$GDEPOT/snapshots
+svn mkdir $GFRENCH -m "creation du dossier de la branche FRENCH"
+
+# fichier (local)
+export GFILE=/home/centos/Programs/ReadySVN/DEV/FRENCH/unix/Makefile
+nano $GFILE
+code
+
+# importation (local-distant)
+export GDEPOT=file:///home/centos/Programs/ReadySVN/GHELLO/REPO
+export GTRUNK=$GDEPOT/trunk
+export GPROJECT=/home/centos/Programs/ReadySVN/GHELLO/DEV/FRENCH/code
+svn import $GPROJECT $GTRUNK -m "importation du projet initial GHELLO version FRENCH"
+
+# permission (local)
+export GPATH=/home/centos/Programs/ReadySVN/GHELLO/DEV
+chmod -R 777 $GPATH
+
+# copie (local-local)
+export GSRC=/home/centos/Programs/ReadySVN/DEV/
+export GDST=/home/centos/Programs/ReadySVN/GHELLO/
+cp -rf $GSRC $GDST
+
+# copie (distant-local)
+export GDEPOT=file:///home/centos/Programs/ReadySVN/GHELLO/REPO
+export GFRENCH=$GDEPOT/branches/FRENCH/FRENCH-beta-1.0.1
+export GPROJECT=/home/centos/Programs/ReadySVN/GHELLO/DEV/
+export GLOCAL=$GPROJECT/FRENCH
+svn checkout $GFRENCH $GLOCAL
+
+# copie (distant-distant)
+export GDEPOT=file:///home/centos/Programs/ReadySVN/GHELLO/REPO
+export GTRUNK=$GDEPOT/trunk
+export GFRENCH=$GDEPOT/branches/FRENCH/FRENCH-beta-1.0.1
+svn copy $GTRUNK $GFRENCH -m "creation de la branche FRENCH-beta-1.0.1 a partir du trunk"
+
+# add (local)
+export GPROJECT=/home/centos/Programs/ReadySVN/GHELLO/DEV/
+export GLOCAL=$GPROJECT/FRENCH
+cd $GLOCAL
+svn add --force .
+
+# commit (local-distant)
+export GPROJECT=/home/centos/Programs/ReadySVN/GHELLO/DEV/
+export GLOCAL=$GPROJECT/FRENCH
+cd $GLOCAL
+svn commit -m "commit du projet GHELLO version FRENCH"
+
+# merge (synchronisation-lecture)
+export GPROJECT=/home/centos/Programs/ReadySVN/GHELLO/DEV/
+export GLOCAL=$GPROJECT/FRENCH
+cd $GLOCAL
+svn merge ^/trunk
+
+# merge (selection-ONLY-lecture)
+export GPROJECT=/home/centos/Programs/ReadySVN/GHELLO/DEV/
+export GLOCAL=$GPROJECT/FRENCH
+cd $GLOCAL
+svn merge -c50 ^/trunk
+
+# merge (selection-MANY-lecture)
+export GPROJECT=/home/centos/Programs/ReadySVN/GHELLO/DEV/
+export GLOCAL=$GPROJECT/FRENCH
+cd $GLOCAL
+svn merge -c50,54,60 ^/trunk
+
+# merge (selection-RANGE-lecture)
+export GPROJECT=/home/centos/Programs/ReadySVN/GHELLO/DEV/
+export GLOCAL=$GPROJECT/FRENCH
+cd $GLOCAL
+svn merge -r65:68 ^/trunk
+
+# merge (selection-ALL-lecture)
+export GPROJECT=/home/centos/Programs/ReadySVN/GHELLO/DEV/
+export GLOCAL=$GPROJECT/FRENCH
+cd $GLOCAL
+svn merge -c50,54,60 -r65:68 ^/trunk
+
+# merge (reintegrate-ecriture)
+export GTRUNK=^/trunk
+export GFRENCH=^/branches/FRENCH/FRENCH-beta-1.0.1
+export GPROJECT=/home/centos/Programs/ReadySVN/GHELLO/DEV/
+export GLOCAL=$GPROJECT/FRENCH
+cd $GLOCAL
+svn merge --reintegrate $GFRENCH
+
+# merge (2 URL-lecture-ecriture)
+export GFRENCH=^/branches/FRENCH/FRENCH-beta-1.0.1
+export GPROJECT=/home/centos/Programs/ReadySVN/GHELLO/DEV/
+export GLOCAL=$GPROJECT/FRENCH
+cd $GLOCAL
+svn merge --reintegrate $GFRENCH
+
+# revert (local)
+export GPROJECT=/home/centos/Programs/ReadySVN/GHELLO/DEV/
+export GLOCAL=$GPROJECT/FRENCH
+export GDOC=unix
+cd $GLOCAL
+svn revert -R $GDOC
+
+# suppression (local)
+export GPATH=/home/centos/Programs/ReadySVN/GHELLO/REPO
+rm -rf $GPATH
+
+# navigation (distant)
+export GDEPOT=file:///home/centos/Programs/ReadySVN/GHELLO/REPO
+svn ls -R $GDEPOT
+
+# historique (distant)
+export GDEPOT=file:///home/centos/Programs/ReadySVN/GHELLO/REPO
+svn log $GDEPOT
+
+# status (local)
+export GPROJECT=/home/centos/Programs/ReadySVN/GHELLO/DEV/
+export GLOCAL=$GPROJECT/FRENCH
+cd $GLOCAL
+svn status
+
+# proprietes (local-list)
+export GPROJECT=/home/centos/Programs/ReadySVN/GHELLO/DEV/
+export GLOCAL=$GPROJECT/FRENCH
+cd $GLOCAL
+svn proplist -v
+
+# proprietes (local-set)
+export GPROJECT=/home/centos/Programs/ReadySVN/GHELLO/DEV/
+export GLOCAL=$GPROJECT/FRENCH
+export GDOC=unix
+cd $GLOCAL
+svn propset svn:ignore $GDOC .
+
+# proprietes (local-set-file)
+export GPROJECT=/home/centos/Programs/ReadySVN/GHELLO/DEV/
+export GLOCAL=$GPROJECT/FRENCH
+cd $GLOCAL
+svn propset svn:ignore -F .svnignore .
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

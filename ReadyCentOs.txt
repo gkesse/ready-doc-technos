@@ -1,0 +1,92 @@
+#================================================
+# CentOs
+#================================================
+# Nano
+#================================================
+# L'installation
+yum install nano -y
+
+#================================================
+# Development Tools
+#================================================
+# L'installation
+yum groupinstall "Development Tools" -y
+
+#================================================
+# X Server
+#================================================
+# L'installation
+yum groupinstall "X Window System" -y
+shutdown -r now
+nano /home/centos/.bash_profile
+export LC_ALL=C
+source /home/centos/.bash_profile
+
+# Le test
+xclock
+
+#================================================
+# Wget
+#================================================
+# L'installation
+yum install wget -y
+
+#================================================
+# Java
+#================================================
+# L'installation
+cd /opt/
+wget https://download.oracle.com/otn/java/jdk/12+33/312335d836a34c7c8bba9d963e26dc23/jdk-12_linux-x64_bin.tar.gz?AuthParam=1560546915_12cd690284ce11654cca98e09c95ab3c
+tar xzfv jdk-12_linux-x64_bin.tar.gz
+rm -rf jdk-12_linux-x64_bin.tar.gz
+
+#================================================
+# Eclipse
+#================================================
+# L'installation
+cd /opt/
+wget http://mirror.dkm.cz/eclipse/technology/epp/downloads/release/2019-03/R/eclipse-cpp-2019-03-R-linux-gtk-x86_64.tar.gz
+tar xzfv eclipse-cpp-2019-03-R-linux-gtk-x86_64.tar.gz
+rm -rf eclipse-cpp-2019-03-R-linux-gtk-x86_64.tar.gz
+
+# Le démarrage
+export PATH=/opt/jdk-12/bin/
+export PATH=/opt/eclipse/
+eclipse
+
+#================================================
+# Git
+#================================================
+# L'installation
+yum install git -y
+
+# L'initialisation
+export GDEPOT=https://github.com/gkesse/ReadyDev.git
+export GPROJECT_ROOT=/home/pi/Programs/ReadyStudio/
+export GPROJECT=$GPROJECT_ROOT/ReadyDev
+
+# La configuration
+export USER_NAME="Gerard KESSE"
+export USER_EMAIL="tiakagerard@hotmail.com"
+export CORE_EDITOR=nano
+git config --global user.name $USER_NAME
+git config --global user.email $USER_EMAIL
+git config --global core.editor $CORE_EDITOR
+
+# Le clonage
+git clone $GDEPOT $GPROJECT
+
+# La récupération
+cd $GPROJECT
+git pull
+chmod -R 777 $GPROJECT
+
+# L'annulation
+cd $GPROJECT
+git reset
+
+
+
+
+
+

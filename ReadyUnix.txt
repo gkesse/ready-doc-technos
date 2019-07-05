@@ -1,0 +1,18 @@
+#================================================
+# Commandes Unix | CentOs
+#================================================
+# grep
+export GSTRING="namespace"
+export GPATH=/opt/gSOAP/gsoap
+export GINCLUDE=--include=\*.h
+grep -inR $GINCLUDE0 $GSTRING $GPATH
+
+
+
+
+
+
+
+
+
+
