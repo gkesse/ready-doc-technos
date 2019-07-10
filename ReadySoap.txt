@@ -1,63 +1,26 @@
 #================================================
 # SOAP | CentOs
 #================================================
-# installer flex
-yum install flex-devel.i686 -y
+OBJET
 
-# installer bison
-yum install bison-devel.i686 -y
+yum install flex-devel.i686
+yum install bison-devel.i686
 
-# cloner gSOAP
+cd /opt/
 git clone https://github.com/stoneyrh/gSOAP
 
-# construire soapcpp2
-cd gsoap/src
+cd /opt/gSOAP/gsoap/src
 make -f MakefileManual
 
-# construire wsdl
-cd gsoap/wsdl
+cd /opt/gSOAP/gsoap/wsdl
 make -f MakefileManual
 
-# configurer .bash_profile
 nano /home/centos/.bash_profile
 export PATH=/opt/gSOAP/gsoap/bin:$PATH
 
-# creer un service
-//gsoap ns service style: rpc
-//gsoap ns service encoding: encoded
-int ns__add(int a, int b, int *result);
-int ns__subtract(int a, int b, int *result);
-int ns__multiply(int a, int b, int *result);
-int ns__divide(int a, int b, int *result);
+nano /home/centos/LOCAL/unix/data/soap/srv/service.h
+int ns__add(double a, double b, double *result);
 
 # generer les fichiers soap
 soapcpp2 -c -L -d../build -pmessg service.h
-
-#================================================
-# Hello
-#================================================
-# interface
-hello.h
-int ns__hello(std::string name, std::string& greeting);
-
-# generation
-soapcpp2 hello.h
-
-# serveur
-hello.cpp
-#include "soapH.h"  // include the generated source code headers
-#include "ns.nsmap" // include XML namespaces
-int main()
-{
-  return soap_serve(soap_new());
-}
-int ns__hello(struct soap *soap, std::string name, std::string& greeting)
-{
-  greeting = "Hello " + name;
-  return SOAP_OK;
-}
-
-# compilation
-c++ -o hello.cgi hello.cpp soapC.cpp soapServer.cpp stdsoap2.cpp
-
 
