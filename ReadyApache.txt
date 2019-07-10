@@ -7,128 +7,47 @@ yum install php-cli
 yum install mod_fcgid
 yum install elinks
 
-nano /home/centos/Programs/ReadyApache/index.php
-Bonjour tout le mmonde
-chmod -R 777 /home/centos/Programs/ReadyApache
-
- 
-
-nano /etc/httpd/conf.d/php.conf
-#<FilesMatch \.php$>
-   SetHandler application/x-httpd-php
-#</FilesMatch>
-
-updatedb
-locate php.ini
-locate php-cgi
-
-nano /var/www/cgi-bin/php.fastcgi
-#!/bin/bash
-
-PHPRC="/etc/php.ini"
-PHP_FCGI_CHILDREN=4
-PHP_FCGI_MAX_REQUESTS=1000
-export PHPRC
-export PHP_FCGI_CHILDREN
-export PHP_FCGI_MAX_REQUESTS
-exec /usr/bin/php-cgi
-
-ll /var/www/cgi-bin/php.fastcgi
--rw-r--r--. 1 root root 171 Jul  5 03:56 /var/www/cgi-bin/php.fastcgi
-
-chmod +x /var/www/cgi-bin/php.fastcgi
-
-ll /var/www/cgi-bin/php.fastcgi
--rwxr-xr-x. 1 apache apache 171 Jul  5 03:56 /var/www/cgi-bin/php.fastcgi
-
-ll /etc/httpd/conf.d/vhosts.conf
-chmod 777 /etc/httpd/conf.d/vhosts.conf
-chmod 644 /etc/httpd/conf.d/vhosts.conf
-> /etc/httpd/conf.d/vhosts.conf
-nano /etc/httpd/conf.d/vhosts.conf
-
-<VirtualHost *:80>
-    ServerName www.readydev.com
-    ServerAdmin admin@readydev.com
-    DocumentRoot /home/centos/Programs/ReadyApache/
-    
-    <Directory "/home/centos/Programs/ReadyApache/">
-        Options All
-        AllowOverride All
-        Order allow,deny
-        Allow from All
-        Require all granted
-    </Directory>
-</VirtualHost>
-
-<VirtualHost *:80>
-    ServerName www.readydev.com
-    ServerAdmin admin@readydev.com
-    DocumentRoot /home/centos/Programs/ReadyApache/
-    
-    <Directory "/home/centos/Programs/ReadyApache/">
-        Options All
-        AllowOverride All
-        Order allow,deny
-        Allow from All
-        Require all granted
-    </Directory>
-</VirtualHost>
-
-
-nano /var/www/html/info.php
-<?php
-  phpinfo();
-?>
-
-firewall-cmd --add-service=http --permanent
-firewall-cmd --add-service=https --permanent
-
-export GWEBROOT=/home/centos/Programs/ReadyApache
-chcon -R --reference=/var/www/html/ ${GWEBROOT} 
-chcon -R -t httpd_sys_content_t ${GWEBROOT}/ 
-semanage -a -t httpd_sys_content_t "${GWEBROOT}(/.*)?" 
-setsebool -P httpd_enable_homedirs true 
-chmod 755 ${GWEBROOT}
-service httpd restart 
-
-getenforce
-semanage -a -t httpd_sys_content_t "(/.*)?"
-ls -dZ /home/centos/Programs/ReadyApache
-setsebool -P httpd_enable_homedirs true
-
-#================================================
-# Apache | CentOs
-#================================================
-yum install httpd
-
-systemctl start httpd
+systemctl restart httpd
 systemctl enable httpd
 systemctl status httpd
+
+systemctl stop firewalld
+systemctl restart firewalld
 
 firewall-cmd --zone=public --permanent --add-service=http
 firewall-cmd --zone=public --permanent --add-service=https
 firewall-cmd --reload
+firewall-cmd --list-all
 
 > /etc/httpd/conf.d/vhost.conf
 nano /etc/httpd/conf.d/vhost.conf
 <VirtualHost *:80>
-    ServerAdmin webmaster@mytecmint.com
-    ServerName mytecmint.com
-    ServerAlias www.mytecmint.com
-    DocumentRoot /var/www/html/mytecmint.com/
-    ErrorLog /var/log/httpd/mytecmint.com/error.log
-    CustomLog /var/log/httpd/mytecmint.com/access.log combined
+    ServerAdmin admin@readydev.com
+    ServerName readydev.com
+    ServerAlias www.readydev.com
+    DocumentRoot "/var/www/html/Doxygen/"
+    ErrorLog /var/log/httpd/Doxygen/error.log
+    CustomLog /var/log/httpd/Doxygen/access.log combined
+    
+    <Directory "/var/www/html/Doxygen/">
+        Options All
+        AllowOverride All
+        Order allow,deny
+        allow from all
+        Require all granted
+    </Directory>
 </VirtualHost>
 
-mkdir -p /var/www/html/mytecmint.com/
-mkdir -p /var/log/httpd/mytecmint.com/
+mkdir -p /var/www/html/Doxygen/
+mkdir -p /var/log/httpd/Doxygen/
 
-> /var/www/html/mytecmint.com/index.html
-nano /var/www/html/mytecmint.com/index.html
-Welcome to My TecMint Website" 
+> /var/www/html/Doxygen/index.html
+nano /var/www/html/Doxygen/index.html
+<h1 style="color:red">SOAP RPC IPC<h1>
 
-systemctl restart httpd.service
+systemctl restart httpd
+
+http://CentOs
 
 #================================================
 # Apache | CentOs

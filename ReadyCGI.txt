@@ -17,7 +17,7 @@ systemctl status firewalld
 
 firewall-cmd --zone=public --permanent --add-service=http
 firewall-cmd --zone=public --permanent --add-service=https
-firewall-cmd --zone=public --add-port=8118/tcp --permanent
+firewall-cmd --zone=public --add-port=8008/tcp --permanent
 firewall-cmd --reload
 firewall-cmd --list-all
 
@@ -25,22 +25,22 @@ mkdir -p /var/www/html/ReadyCgi/
 mkdir -p /var/log/httpd/ReadyCgi/
 
 nano /etc/httpd/conf/httpd.conf
-Listen 8118
+Listen 8008
 
 systemctl restart httpd
 
 > /etc/httpd/conf.d/vhost.conf
 nano /etc/httpd/conf.d/vhost.conf
-<VirtualHost *:8118>
+<VirtualHost *:8008>
     ServerAdmin admin@readydev.com
     ServerName readydev.com
     ServerAlias www.readydev.com
-    DocumentRoot "/var/www/html/ReadyCgi/"
-    ScriptAlias /cgi-bin/ "/var/www/html/ReadyCgi/"
+    DocumentRoot "/var/www/cgi-bin/"
+    ScriptAlias /cgi-bin/ "/var/www/cgi-bin/"
     ErrorLog /var/log/httpd/ReadyCgi/error.log
     CustomLog /var/log/httpd/ReadyCgi/access.log combined
     
-    <Directory "/var/www/html/ReadyCgi/">
+    <Directory "/var/www/cgi-bin/">
         AddHandler php-fastcgi .php
         Action php-fastcgi /cgi-bin/php.fastcgi
         Options All
@@ -50,37 +50,28 @@ nano /etc/httpd/conf.d/vhost.conf
         Require all granted
     </Directory>
 </VirtualHost>
-
-
-export GSRC=../code/GProject/Release/GProject
-export GDST=/var/www/html/ReadyCgi/main.cgi
-cp -f $GSRC $GDST
-
-echo
-/var/www/html/ReadyCgi/main.cgi
-echo
-
-chmod -R 777 /home/centos/Programs/ReadyC/
-
-
-> /var/www/html/ReadyCgi/index.php
-nano /var/www/html/ReadyCgi/index.php
-<?php
-  phpinfo();
-?>
  
 systemctl restart httpd
 
-elinks http://localhost:8008
+http://CentOs:8008/cgi-bin/main.cgi
 
 
+> /var/www/cgi-bin/main.c
+nano /var/www/cgi-bin/main.c
+#include <stdio.h>
 
+int main() {
+	printf("Content-Type: text/html;\n\n");
+	printf ("<h1>Hello, World!</h1>");
+	return 0;
+}
 
+gcc -o main.cgi main.c
+./main.cgi
 
-
-
-
-
+#================================================
+# CGI | CentOs
+#================================================
 nano /etc/httpd/conf.d/php.conf
 #<FilesMatch \.php$>
 #    SetHandler application/x-httpd-php

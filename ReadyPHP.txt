@@ -2,10 +2,10 @@
 # PHP | Windows | WampServer
 #================================================
 C:\wamp64\bin\apache\apache2.4.37\conf\httpd.conf
-Listen 8008
+Listen 8118
 
 C:\wamp64\bin\apache\apache2.4.37\conf\httpd.conf\extra\httpd-vhosts.conf
-<VirtualHost *:8008>
+<VirtualHost *:8118>
     ServerName www.readydev.com
     ServerAdmin gerard.kesse@outlook.fr
     DocumentRoot "C:\Users\Admin\Downloads\Programs\ReadyPHP"
@@ -43,7 +43,7 @@ systemctl status firewalld
 
 firewall-cmd --zone=public --permanent --add-service=http
 firewall-cmd --zone=public --permanent --add-service=https
-firewall-cmd --zone=public --add-port=8008/tcp --permanent
+firewall-cmd --zone=public --add-port=8118/tcp --permanent
 firewall-cmd --reload
 firewall-cmd --list-all
 
@@ -51,11 +51,11 @@ mkdir -p /var/www/html/ReadyPhp/
 mkdir -p /var/log/httpd/ReadyPhp/
 
 nano /etc/httpd/conf/httpd.conf
-Listen 8008
+Listen 8118
 
 > /etc/httpd/conf.d/vhost.conf
 nano /etc/httpd/conf.d/vhost.conf
-<VirtualHost *:8008>
+<VirtualHost *:8118>
     ServerAdmin admin@readydev.com
     ServerName readydev.com
     ServerAlias www.readydev.com
@@ -80,4 +80,5 @@ nano /var/www/html/ReadyPhp/index.php
  
 systemctl restart httpd
 
-elinks http://localhost:8008
+http://CentOs:8118
+
