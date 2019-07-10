@@ -1,0 +1,33 @@
+#================================================
+# HTTP | CentOs
+#================================================
+
+chmod 644 /etc/httpd/conf/httpd.conf 
+chmod 777 /etc/httpd/conf/httpd.conf 
+
+chmod 644 /etc/httpd/conf.d/php.conf
+chmod 777 /etc/httpd/conf.d/php.conf
+
+chown apache:apache /home/centos/Programs/ReadyApache/
+chmod -R 755 /home/centos/Programs/ReadyApache/
+chown apache:apache /var/www/
+chmod -R 755 /var/www/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

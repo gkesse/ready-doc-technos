@@ -1,0 +1,57 @@
+#================================================
+# MathJax | RaspberryPi
+#================================================
+yum install httpd
+yum install php
+yum install php-cli
+yum install mod_fcgid
+yum install elinks
+
+systemctl start httpd
+systemctl enable httpd
+systemctl status httpd
+
+systemctl stop firewalld
+systemctl restart firewalld
+systemctl status firewalld
+
+firewall-cmd --zone=public --permanent --add-service=http
+firewall-cmd --zone=public --permanent --add-service=https
+firewall-cmd --zone=public --add-port=8008/tcp --permanent
+firewall-cmd --reload
+firewall-cmd --list-all
+
+mkdir -p /var/www/html/ReadyPHP/
+mkdir -p /var/log/httpd/ReadyPHP/
+
+nano /etc/httpd/conf/httpd.conf
+Listen 8008
+
+> /etc/httpd/conf.d/vhost.conf
+nano /etc/httpd/conf.d/vhost.conf
+<VirtualHost *:8008>
+    ServerAdmin admin@readydev.com
+    ServerName readydev.com
+    ServerAlias www.readydev.com
+    DocumentRoot "/var/www/html/ReadyPHP/"
+    ErrorLog /var/log/httpd/ReadyPHP/error.log
+    CustomLog /var/log/httpd/ReadyPHP/access.log combined
+    
+    <Directory "/var/www/html/ReadyPHP/">
+        Options All
+        AllowOverride All
+        Order allow,deny
+        allow from all
+        Require all granted
+    </Directory>
+</VirtualHost>
+
+> /var/www/html/ReadyPHP/index.php
+nano /var/www/html/ReadyPHP/index.php
+<?php
+  phpinfo();
+?>
+ 
+systemctl restart httpd
+
+elinks http://localhost:8008
