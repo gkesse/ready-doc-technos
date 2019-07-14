@@ -7,42 +7,35 @@ yum install php-cli
 yum install mod_fcgid
 yum install elinks
 
-systemctl start httpd
-systemctl enable httpd
-systemctl status httpd
-
-systemctl stop firewalld
 systemctl restart firewalld
-systemctl status firewalld
 
 firewall-cmd --zone=public --permanent --add-service=http
 firewall-cmd --zone=public --permanent --add-service=https
-firewall-cmd --zone=public --add-port=8008/tcp --permanent
+firewall-cmd --zone=public --add-port=8118/tcp --permanent
 firewall-cmd --reload
 firewall-cmd --list-all
 
-mkdir -p /var/www/html/ReadyCgi/
+mkdir -p /var/www/cgi-bin/ReadyCgi/
 mkdir -p /var/log/httpd/ReadyCgi/
 
 nano /etc/httpd/conf/httpd.conf
-Listen 8008
+Listen 8118
 
 systemctl restart httpd
 
 > /etc/httpd/conf.d/vhost.conf
 nano /etc/httpd/conf.d/vhost.conf
-<VirtualHost *:8008>
+<VirtualHost *:8118>
     ServerAdmin admin@readydev.com
     ServerName readydev.com
     ServerAlias www.readydev.com
-    DocumentRoot "/var/www/cgi-bin/"
-    ScriptAlias /cgi-bin/ "/var/www/cgi-bin/"
+    DocumentRoot "/var/www/cgi-bin/ReadyCgi/"
+    ScriptAlias /cgi-bin/ "/var/www/cgi-bin/ReadyCgi/"
     ErrorLog /var/log/httpd/ReadyCgi/error.log
     CustomLog /var/log/httpd/ReadyCgi/access.log combined
     
-    <Directory "/var/www/cgi-bin/">
-        AddHandler php-fastcgi .php
-        Action php-fastcgi /cgi-bin/php.fastcgi
+    <Directory "/var/www/cgi-bin/ReadyCgi/">
+        DirectoryIndex index.cgi
         Options All
         AllowOverride All
         Order allow,deny
@@ -53,82 +46,21 @@ nano /etc/httpd/conf.d/vhost.conf
  
 systemctl restart httpd
 
-http://CentOs:8008/cgi-bin/main.cgi
-
-
-> /var/www/cgi-bin/main.c
-nano /var/www/cgi-bin/main.c
+cd /var/www/cgi-bin/ReadyCgi/
+> main.c
+nano main.c
 #include <stdio.h>
 
 int main() {
 	printf("Content-Type: text/html;\n\n");
-	printf ("<h1>Hello, World!</h1>");
+	printf ("<h1 style='color:red'>[ CGI ] Bonjour tout le monde</h1>\n");
 	return 0;
 }
 
-gcc -o main.cgi main.c
-./main.cgi
+gcc -o index.cgi main.c
+./index.cgi
 
-#================================================
-# CGI | CentOs
-#================================================
-nano /etc/httpd/conf.d/php.conf
-#<FilesMatch \.php$>
-#    SetHandler application/x-httpd-php
-#</FilesMatch>
-
-updatedb
-locate php.ini
-locate php-cgi
-
-nano /var/www/cgi-bin/php.fastcgi
-#!/bin/bash
-
-PHPRC="/etc/php.ini"
-PHP_FCGI_CHILDREN=4
-PHP_FCGI_MAX_REQUESTS=1000
-export PHPRC
-export PHP_FCGI_CHILDREN
-export PHP_FCGI_MAX_REQUESTS
-exec /usr/bin/php-cgi
-
-ll /var/www/cgi-bin/php.fastcgi
--rw-r--r--. 1 root root 171 Jul  5 03:56 /var/www/cgi-bin/php.fastcgi
-
-chown apache:apache /var/www/cgi-bin/php.fastcgi
-chmod +x /var/www/cgi-bin/php.fastcgi
-
-ll /var/www/cgi-bin/php.fastcgi
--rwxr-xr-x. 1 apache apache 171 Jul  5 03:56 /var/www/cgi-bin/php.fastcgi
-
-nano /etc/httpd/conf.d/virtualhosts.conf
-nano /etc/httpd/conf/httpd.conf
-
-<VirtualHost *:80>
-    ServerName www.readydev.com
-    ServerAdmin admin@readydev.com
-    DocumentRoot /var/www/html
-    ScriptAlias /cgi-bin/ "/var/www/cgi-bin/"
-    
-    <Directory "/var/www/html">
-        AddHandler php-fastcgi .php
-        Action php-fastcgi /cgi-bin/php.fastcgi
-        Options All
-        AllowOverride All
-        Order allow,deny
-        Allow from All
-        Require all granted
-    </Directory>
-</VirtualHost>
-
+systemctl enable httpd
 systemctl restart httpd
 
-nano /var/www/html/info.php
-<?php
-  phpinfo();
-?>
-
-
-
-
-github.com/gkesse/ReadyDoc.git
+http://CentOs:8118/cgi-bin/

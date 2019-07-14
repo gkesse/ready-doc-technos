@@ -7,11 +7,6 @@ yum install php-cli
 yum install mod_fcgid
 yum install elinks
 
-systemctl restart httpd
-systemctl enable httpd
-systemctl status httpd
-
-systemctl stop firewalld
 systemctl restart firewalld
 
 firewall-cmd --zone=public --permanent --add-service=http
@@ -19,74 +14,9 @@ firewall-cmd --zone=public --permanent --add-service=https
 firewall-cmd --reload
 firewall-cmd --list-all
 
-> /etc/httpd/conf.d/vhost.conf
-nano /etc/httpd/conf.d/vhost.conf
-<VirtualHost *:80>
-    ServerAdmin admin@readydev.com
-    ServerName readydev.com
-    ServerAlias www.readydev.com
-    DocumentRoot "/var/www/html/Doxygen/"
-    ErrorLog /var/log/httpd/Doxygen/error.log
-    CustomLog /var/log/httpd/Doxygen/access.log combined
-    
-    <Directory "/var/www/html/Doxygen/">
-        Options All
-        AllowOverride All
-        Order allow,deny
-        allow from all
-        Require all granted
-    </Directory>
-</VirtualHost>
+mkdir -p /var/www/html/ReadyHttp/
+mkdir -p /var/log/httpd/ReadyHttp/
 
-mkdir -p /var/www/html/Doxygen/
-mkdir -p /var/log/httpd/Doxygen/
-
-> /var/www/html/Doxygen/index.html
-nano /var/www/html/Doxygen/index.html
-<h1 style="color:red">SOAP RPC IPC<h1>
-
-systemctl restart httpd
-
-http://CentOs
-
-#================================================
-# Apache | CentOs
-#================================================
-nano /etc/httpd/conf/httpd.conf
-
-> /etc/httpd/conf.d/vhost.conf
-nano /etc/httpd/conf.d/vhost.conf
-<VirtualHost *:80>
-    ServerAdmin admin@readyhttp.com
-    ServerName readyhttp.com
-    ServerAlias www.readyhttp.com
-    DocumentRoot "/home/centos/Programs/ReadyHttp/"
-    ErrorLog /home/centos/Programs/ReadyHttp/log/error.log
-    CustomLog /home/centos/Programs/ReadyHttp/log/access.log combined
-    <Directory "/home/centos/Programs/ReadyHttp/">
-        Options All
-        AllowOverride All
-        Order allow,deny
-        allow from all
-        Require all granted
-    </Directory>
-</VirtualHost>
-
-mkdir -p /home/centos/Programs/ReadyHttp
-mkdir -p /home/centos/Programs/ReadyHttp/log
-
-chown apache:apache /home/centos/Programs/ReadyHttp/
-
-> /home/centos/Programs/ReadyHttp/index.html
-nano /home/centos/Programs/ReadyHttp/index.html
-<h1 style="color:navy">
-Bonjour tout le monde
-</h1>
-
-systemctl restart httpd
-#================================================
-# Apache | CentOs
-#================================================
 > /etc/httpd/conf.d/vhost.conf
 nano /etc/httpd/conf.d/vhost.conf
 <VirtualHost *:80>
@@ -106,13 +36,11 @@ nano /etc/httpd/conf.d/vhost.conf
     </Directory>
 </VirtualHost>
 
-mkdir -p /var/www/html/ReadyHttp/
-mkdir -p /var/log/httpd/ReadyHttp/
-
 > /var/www/html/ReadyHttp/index.html
 nano /var/www/html/ReadyHttp/index.html
-<h1 style="color:navy">
-Bonjour tout le monde
-</h1>
+<h1 style="color:red">Bonjour tout le monde<h1>
 
+systemctl enable httpd
 systemctl restart httpd
+
+http://CentOs

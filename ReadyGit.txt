@@ -2,11 +2,156 @@
 # Git | CentOs
 #================================================
 
-# installation (fedora)
-dnf install git-all
+# installation yum
+yum install curl-devel expat-devel gettext-devel \
+openssl-devel zlib-devel
+
+# installation apt-get
+apt-get install libcurl4-gnutls-dev libexpat1-dev gettext \
+libz-dev libssl-dev
+
+# compiler et installer 
+tar -zxf git-1.6.0.5.tar.gz
+cd git-1.6.0.5
+make prefix=/usr/local all
+sudo make prefix=/usr/local install
+
+# obtenir Git par Git lui-même
+git clone git://git.kernel.org/pub/scm/git/git.git
+
+# Installation sur Linux yum
+yum install git-core
+
+# Installation sur Linux yum
+apt-get install git-core
+
+# Votre identité
+git config --global user.name "John Doe"
+git config --global user.email johndoe@example.com
+
+# Votre éditeur de texte
+git config --global core.editor emacs
+
+# Votre outil de différences
+ git config --global merge.tool vimdiff
+
+# Vérifier vos paramètres
+git config --list
+
+#  vérifier la valeur effective d’un paramètre
+git config user.name
+
+# Obtenir de l’aide
+git help <verbe>
+git <verbe> --help
+man git-<verbe>
+
+#  obtenir la page de manuel pour la commande config 
+git help config
+
+# Initialisation d’un dépôt Git
+ git init
+
+# les fichiers que vous souhaitez suivre,
+git add *.c
+git add README
+git commit –m 'version initiale du projet'
+
+# Cloner un dépôt existant
+git clone git://github.com/schacon/grit.git
+
+# spécifier le nom dans une option supplémentaire
+git clone git://github.com/schacon/grit.git mygrit
+
+# Vérifier l’état des fiiers
+git status
+
+# Placer de nouveaux fiiers sous suivi de version
+git add LISEZMOI
+
+# Ignorer des fiiers
+# un commentaire, cette ligne est ignorée
+*.a # pas de fichier .a
+!lib.a # mais suivre en version lib.a malgré la règle précédente
+/TODO # ignorer uniquement le fichier TODO à la racine du projet
+build/ # ignorer tous le fichiers dans le répertoire build
+doc/*.txt # ignorer doc/notes.txt, mais pas doc/server/arch.txt
+
+#  visualiser ce qui a été modifié mais pas encore indexé
+git diff
+
+# visualiser les modifications indexées
+git diff --cached
+
+# compare les fichiers indexés et le dernier instantané
+git diff --staged
+
+# valider vos modifications
+git commit
+
+# spécifier votre message de validation
+git commit -m "Story 182: Fix benchmarks for speed"
+
+#  éviterlaphase deplacement desfichiers dansla zoned’index
+git commit -a -m 'added new benchmarks'
+
+# éliminer des fichiers en suivi de version
+git rm grit.gemspec
+
+# son élimination doit être forcée
+git rm -f grit.gemspec
+
+# abandonner le suivi de version d’un fichier tout en le conservant dans la copie de travail
+git rm --cached readme.txt
+
+# spécifier des noms de fichiers ou de répertoires, ou des patrons de fichiers
+git rm log/\*.log
+
+# élimine tous les fichiers se terminant par ~
+git rm \*~
+
+# renommer un fichier
+git mv nom_origine nom_cible
+
+# revient à lancer les commandes
+mv LISEZMOI.txt LISEZMOI
+git rm LISEZMOI.txt
+git add LISEZMOI
+
+# Visualiser l’historique des validations
 
 
+#================================================
+# Git | CentOs
+#================================================
+# historique
+git log
+    
+# difference between commit
+git diff 3d54f 0dc81
 
+# get only files names
+git diff 3d54f 0dc81 --name-only
 
+# get changes applied to another branch
+git diff 3d54f 0dc81 > my.patch
+git apply my.patch
+
+# difference between commit and the latest commit
+git diff 3d54f
+
+# get only files names
+git diff 3d54f --name-only
+
+# checking the changes in the last 2 commits
+git diff HEAD~2
+
+# get only files names
+git diff HEAD~200 --name-only
+
+# reset your repository to any commit you want
+git clone https://github.com/gkesse/ReadyDev.git ReadyFormula
+cd ReadyFormula
+git reset --hard HEAD~100
 
 

@@ -2,10 +2,10 @@
 # PHP | Windows | WampServer
 #================================================
 C:\wamp64\bin\apache\apache2.4.37\conf\httpd.conf
-Listen 8118
+Listen 8008
 
 C:\wamp64\bin\apache\apache2.4.37\conf\httpd.conf\extra\httpd-vhosts.conf
-<VirtualHost *:8118>
+<VirtualHost *:8008>
     ServerName www.readydev.com
     ServerAdmin gerard.kesse@outlook.fr
     DocumentRoot "C:\Users\Admin\Downloads\Programs\ReadyPHP"
@@ -21,7 +21,6 @@ C:\wamp64\bin\apache\apache2.4.37\conf\httpd.conf\extra\httpd-vhosts.conf
 C:\Users\Admin\Downloads\Programs\ReadyPHP\index.php
 <h1>Bonjour tout le monde</h1>
 
-
 Redemarrer les services
 
 #================================================
@@ -33,37 +32,33 @@ yum install php-cli
 yum install mod_fcgid
 yum install elinks
 
-systemctl start httpd
-systemctl enable httpd
-systemctl status httpd
-
-systemctl stop firewalld
 systemctl restart firewalld
-systemctl status firewalld
 
 firewall-cmd --zone=public --permanent --add-service=http
 firewall-cmd --zone=public --permanent --add-service=https
-firewall-cmd --zone=public --add-port=8118/tcp --permanent
+firewall-cmd --zone=public --add-port=8008/tcp --permanent
 firewall-cmd --reload
 firewall-cmd --list-all
 
-mkdir -p /var/www/html/ReadyPhp/
-mkdir -p /var/log/httpd/ReadyPhp/
+mkdir -p /var/www/html/ReadyPHP/
+mkdir -p /var/log/httpd/ReadyPHP/
 
 nano /etc/httpd/conf/httpd.conf
-Listen 8118
+Listen 8008
+
+systemctl restart httpd
 
 > /etc/httpd/conf.d/vhost.conf
 nano /etc/httpd/conf.d/vhost.conf
-<VirtualHost *:8118>
+<VirtualHost *:8008>
     ServerAdmin admin@readydev.com
     ServerName readydev.com
     ServerAlias www.readydev.com
-    DocumentRoot "/var/www/html/ReadyPhp/"
-    ErrorLog /var/log/httpd/ReadyPhp/error.log
-    CustomLog /var/log/httpd/ReadyPhp/access.log combined
+    DocumentRoot "/var/www/html/ReadyPHP/"
+    ErrorLog /var/log/httpd/ReadyPHP/error.log
+    CustomLog /var/log/httpd/ReadyPHP/access.log combined
     
-    <Directory "/var/www/html/ReadyPhp/">
+    <Directory "/var/www/html/ReadyPHP/">
         Options All
         AllowOverride All
         Order allow,deny
@@ -72,13 +67,15 @@ nano /etc/httpd/conf.d/vhost.conf
     </Directory>
 </VirtualHost>
 
-> /var/www/html/ReadyPhp/index.php
-nano /var/www/html/ReadyPhp/index.php
+> /var/www/html/ReadyPHP/info.php
+nano /var/www/html/ReadyPHP/info.php
 <?php
   phpinfo();
 ?>
  
+systemctl enable httpd
 systemctl restart httpd
 
-http://CentOs:8118
+http://CentOs:8008
+http://CentOs:8008/info.php
 
