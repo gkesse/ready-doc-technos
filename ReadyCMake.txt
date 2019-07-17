@@ -1,0 +1,25 @@
+#================================================
+# CMake | CentOs
+#================================================
+
+git clone https://github.com/Kitware/CMake.git
+
+./bootstrap --help
+
+./bootstrap \
+--prefix=/opt/RLibs/rBuild/cmake/unix64/
+
+./bootstrap \
+--prefix=/opt/RLibs/rBuild/cmake/unix64/ \
+--qt-gui
+
+make -j5
+make install
+
+rm -rf /opt/RLibs/rLibs/rLibs-unix64-gcc-4.8.5/cmake
+mkdir -p /opt/RLibs/rLibs/rLibs-unix64-gcc-4.8.5/cmake/
+cp -rf \
+/opt/RLibs/rBuild/cmake/binary/cmake-3.15.0-Linux-x86_64/* \
+/opt/RLibs/rLibs/rLibs-unix64-gcc-4.8.5/cmake/
+
+ln -s /opt/RLibs/rLibs/rLibs-unix64-gcc-4.8.5/cmake/bin/* /usr/bin 

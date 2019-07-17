@@ -113,11 +113,17 @@ CONFIG_SHOW = FALSE
 
 rm -f /var/www/cgi-bin/ReadySoap/index.cgi
 cp -f \
-/home/centos/Programs/ReadyC/unix/bin/GProject.exe \
+/home/centos/Programs/ReadyC/code/GProject/Release/GProject \
+/var/www/cgi-bin/ReadySoap/index.cgi
+
+rm -f /var/www/cgi-bin/ReadySoap/index.cgi
+cp -f \
+/var/www/cgi-bin/ReadyCgi/index.cgi \
 /var/www/cgi-bin/ReadySoap/index.cgi
 
 chmod -R 777 /var/www/cgi-bin/ReadySoap/
 
 systemctl restart httpd
 
-http://CentOs:8228/cgi-bin/
+http://CentOs:8228/
+

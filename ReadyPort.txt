@@ -18,3 +18,5 @@ semanage port -a -t http_port_t -p tcp 8228
 
 # List all port definitions
 semanage port -l | grep http
+
+ln -s /opt/RLibs/rBuild/cmake/binary/cmake-3.15.0-Linux-x86_64/bin/* /usr/bin 
