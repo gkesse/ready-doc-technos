@@ -7,7 +7,8 @@ yum install php-cli
 yum install mod_fcgid
 yum install elinks
 
-systemctl restart firewalld
+systemctl enable httpd
+systemctl enable firewalld
 
 firewall-cmd --zone=public --permanent --add-service=http
 firewall-cmd --zone=public --permanent --add-service=https
@@ -36,6 +37,7 @@ nano /etc/httpd/conf.d/vhost.conf
     
     <Directory "/var/www/cgi-bin/ReadyCgi/">
         DirectoryIndex index.cgi
+        AddHandler cgi-script cgi pl
         Options All
         AllowOverride All
         Order allow,deny
@@ -60,7 +62,62 @@ int main() {
 gcc -o index.cgi main.c
 ./index.cgi
 
-systemctl enable httpd
 systemctl restart httpd
 
 http://CentOs:8118/cgi-bin/
+
+#================================================
+# CGI | CentOs
+#================================================
+firewall-cmd --zone=public --add-port=8228/tcp --permanent
+
+semanage port -a -t http_port_t -p tcp 8228
+
+mkdir -p /var/www/cgi-bin/ReadySoap/
+mkdir -p /var/log/httpd/ReadySoap/
+
+nano /etc/httpd/conf/httpd.conf
+Listen 8228
+
+> /etc/httpd/conf.d/vhost.conf
+nano /etc/httpd/conf.d/vhost.conf
+<VirtualHost *:8228>
+    ServerAdmin admin@readydev.com
+    ServerName readydev.com
+    ServerAlias www.readydev.com
+    DocumentRoot "/var/www/cgi-bin/ReadySoap/"
+    ScriptAlias /cgi-bin/ "/var/www/cgi-bin/ReadySoap/"
+    ErrorLog /var/log/httpd/ReadySoap/error.log
+    CustomLog /var/log/httpd/ReadySoap/access.log combined
+    
+    <Directory "/var/www/cgi-bin/ReadySoap/">
+        DirectoryIndex index.cgi
+        AddHandler cgi-script cgi pl
+        Options All
+        AllowOverride All
+        Order allow,deny
+        allow from all
+        Require all granted
+    </Directory>
+</VirtualHost>
+ 
+systemctl restart httpd
+
+mkdir -p /home/centos/Programs/ReadySoap/
+mkdir -p /var/www/cgi-bin/ReadySoap/data/config/
+
+> /var/www/cgi-bin/ReadySoap/data/config/config.txt
+nano /var/www/cgi-bin/ReadySoap/data/config/config.txt
+PROCESS = SOAP_SERVER
+CONFIG_SHOW = FALSE
+
+rm -f /var/www/cgi-bin/ReadySoap/index.cgi
+cp -f \
+/home/centos/Programs/ReadyC/unix/bin/GProject.exe \
+/var/www/cgi-bin/ReadySoap/index.cgi
+
+chmod -R 777 /var/www/cgi-bin/ReadySoap/
+
+systemctl restart httpd
+
+http://CentOs:8228/cgi-bin/
