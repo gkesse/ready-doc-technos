@@ -23,3 +23,6 @@ cp -rf \
 /opt/RLibs/rLibs/rLibs-unix64-gcc-4.8.5/cmake/
 
 ln -s /opt/RLibs/rLibs/rLibs-unix64-gcc-4.8.5/cmake/bin/* /usr/bin 
+
+./configure \
+--prefix=/opt/RLibs/rLibs/rLibs-unix64-gcc-4.8.5/libgcrypt/ 
