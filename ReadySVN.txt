@@ -1,9 +1,121 @@
 #================================================
 # SVN | CentOs
 #================================================
-# depot (local)
-export GDEPOT=/home/centos/Programs/ReadySVN/GHELLO/REPO
-svnadmin create $GDEPOT
+# definir le groupe et le proprietaire local
+GLOCAL=/home/centos/
+chown -R centos:centos $GLOCAL
+
+# definir les permissions local
+GLOCAL=/home/centos/
+chmod -R 700 $GLOCAL
+
+# creer le depot local
+GREPO=/home/centos/Programs/ReadySVN/P1/REPO
+mkdir -p $GREPO
+svnadmin create $GREPO
+
+# naviguer dans le depot distant
+GREPO=file:///home/centos/Programs/ReadySVN/P1/REPO
+svn ls $GREPO
+svn ls -R $GREPO
+
+# creer le dossier trunk distant
+GREPO=file:///home/centos/Programs/ReadySVN/P1/REPO
+GTRUNK=$GREPO/trunk
+svn mkdir $GTRUNK -m "creation du trunk"
+svn ls -R $GREPO
+
+# creer le dossier branches distant
+GREPO=file:///home/centos/Programs/ReadySVN/P1/REPO
+GBRANCHES=$GREPO/branches
+svn mkdir $GBRANCHES -m "creation du dossier branches"
+svn ls -R $GREPO
+
+# creer la branche branch-hello-1.0.1 distant
+GREPO=file:///home/centos/Programs/ReadySVN/P1/REPO
+GTRUNK=$GREPO/trunk
+GBRANCHES=$GREPO/branches
+GBRANCH=$GBRANCHES/branch-hello-1.0.1
+svn copy $GTRUNK $GBRANCH -m "creation de la branche branch-hello-1.0.1 a partir du trunk"
+svn ls -R $GREPO
+
+# creer une copie de la branche branch-hello-1.0.1 [ distant-local ]
+GREPO=file:///home/centos/Programs/ReadySVN/P1/REPO
+GLOCAL=/home/centos/Programs/ReadySVN/P1/DEV/branch-hello-1.0.1
+GBRANCHES=$GREPO/branches
+GBRANCH=$GBRANCHES/branch-hello-1.0.1
+svn checkout $GBRANCH $GLOCAL
+
+# afficher l'arborescence de la branche branch-hello-1.0.1 [ local ]
+GLOCAL=/home/centos/Programs/ReadySVN/P1/DEV/branch-hello-1.0.1
+tree $GLOCAL
+
+# afficher l'historique distant de la branche branch-hello-1.0.1
+GREPO=file:///home/centos/Programs/ReadySVN/P1/REPO
+GBRANCHES=$GREPO/branches
+GBRANCH=$GBRANCHES/branch-hello-1.0.1
+svn log $GBRANCH
+svn log $GBRANCH --limit 1
+svn log $GBRANCH --limit 1 -v
+
+# afficher l'historique local de la branche branch-hello-1.0.1
+GLOCAL=/home/centos/Programs/ReadySVN/P1/DEV/branch-hello-1.0.1
+svn log $GLOCAL
+svn log $GLOCAL --limit 1
+svn log $GLOCAL --limit 1 -v
+
+# creer le projet local de la branche branch-hello-1.0.1
+GLOCAL=/home/centos/Programs/ReadySVN/P1/DEV/branch-hello-1.0.1
+mkdir -p $GLOCAL/src
+mkdir -p $GLOCAL/unix
+> $GLOCAL/src/main.c
+> $GLOCAL/unix/Makefile
+> $GLOCAL/unix/cmd_build.sh
+> $GLOCAL/unix/cmd_compile.sh
+> $GLOCAL/unix/cmd_run.sh
+> $GLOCAL/unix/cmd_clean.sh
+
+# afficher l'arborescence de la branche branch-hello-1.0.1 [ local ]
+GLOCAL=/home/centos/Programs/ReadySVN/P1/DEV/branch-hello-1.0.1
+tree $GLOCAL
+.
+|-- src
+|   `-- main.c
+`-- unix
+    |-- Makefile
+    |-- cmd_build.sh
+    |-- cmd_clean.sh
+    |-- cmd_compile.sh
+    `-- cmd_run.sh
+
+# afficher le status de la branche branch-hello-1.0.1 local
+GLOCAL=/home/centos/Programs/ReadySVN/P1/DEV/branch-hello-1.0.1
+cd $GLOCAL
+svn status
+svn status -v
+svn status -R -v
+
+# indexer les fichiers de la branche branch-hello-1.0.1 [ local ]
+GLOCAL=/home/centos/Programs/ReadySVN/P1/DEV/branch-hello-1.0.1
+cd $GLOCAL
+svn add src/main.c
+svn status
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#================================================
 
 # dossier (local)
 export GPATH=/home/centos/Programs/ReadySVN/DEV/FRENCH/unix
