@@ -1,0 +1,92 @@
+#================================================
+# SVN | CentOs
+#================================================
+
+svn checkout http://svn.exemple.com/depot/calc
+svn checkout http://svn.exemple.com/svn/depot/trunk@1729 trunk-1729
+svn checkout http://svn.exemple.com/svn/depot/trunk -r 1729 trunk-1729
+
+svn commit bouton.c -m "Coquille corrigée dans bouton.c."
+svn commit -F commentaire_de_propagation
+svn commit
+
+svn update
+svn update -r 1729
+
+svn help
+svn help help
+
+svn import chemin/vers/mon/arborescence \
+http://svn.exemple.com/svn/depot/un/projet \
+-m "Import initial"
+
+svn list http://svn.exemple.com/svn/depot/un/projet
+svn list -v http://svn.exemple.com/depot/projet
+svn list -Rv svn://svn.exemple.com/trunk/
+
+svn add TRUC
+
+svn delete TRUC
+
+svn copy TRUC MACHIN
+
+svn move TRUC MACHIN
+
+svn mkdir TRUC
+
+svn status
+svn status bazar/poisson.c
+svn status -v
+svn status -u -v
+svn status LISEZMOI
+
+svn diff
+svn diff > fichier-correctif
+vn diff --diff-cmd /usr/bin/diff -x "-i" truc.c
+svn diff -r 3 règles.txt
+svn diff -r 2:3 règles.txt
+svn diff -c 3 règles.txt
+svn diff -c 5 http://svn.exemple.com/depot/exemple/trunk/texte/règles.txt
+
+svn revert LISEZMOI
+
+export EDITOR=nano
+
+svn resolve --accept working sandwich.txt
+svn resolve --accept theirs-full sandwich.txt
+
+svn log
+svn log -r 5:19
+svn log -r 19:5
+svn log truc.c
+svn log http://truc.com/svn/trunk/code/truc.c
+svn log -r 8 -v
+svn log -r14 ^/trunk
+
+svn cat -r 2 règles.txt
+svn cat -r 2 règles.txt > règles.txt.v2
+
+svn annotate règles.txt
+svn annotate règles.txt@BASE
+svn annotate images/logo.png --force
+
+svn blame règles.txt -r 2
+
+svn export http://svn.exemple.com/svn/depot/trunk trunk-export
+svn export http://svn.exemple.com/svn/depot/trunk@1729 trunk-1729
+svn export http://svn.example.com/svn/repo/trunk -r 1729 trunk-1729
+
+svn cleanup
+
+
+
+#================================================
+# UNIX | CentOs
+#================================================
+
+ls -A calc
+ls -A
+ls -1
+ls sandwich.*
+
+pwd

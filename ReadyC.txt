@@ -1,0 +1,29 @@
+#================================================
+# C | CentOs
+#================================================
+chown -R centos:centos /home/centos
+chmod -R 700 /home/centos
+
+GMANAGER=/home/centos/Programs/ReadyC/code/GProject/src/manager
+GCLASS_SRC_NAME=Cgi
+GCLASS_DST_NAME=Cgi
+GCLASS_SRC=${GMANAGER}/GProcess${GCLASS_SRC_NAME}
+GCLASS_DST=${GMANAGER}/GProcess${GCLASS_DST_NAME}
+cp -f ${GCLASS_SRC}.c ${GCLASS_DST}.c
+cp -f ${GCLASS_SRC}.h ${GCLASS_DST}.h
+
+GMANAGER=/home/centos/Programs/ReadyC/code/GProject/src/manager
+GCLASS_SRC=${GMANAGER}/GBase
+GCLASS_DST=${GMANAGER}/GClock
+cp -f ${GCLASS_SRC}.c ${GCLASS_DST}.c
+cp -f ${GCLASS_SRC}.h ${GCLASS_DST}.h
+chown -R centos:centos /home/centos
+chmod -R 700 /home/centos
+
+#================================================
+# C | Fonctions
+#================================================
+t1 = time(NULL);
+if (t1 == (time_t)-1)
+(void)printf("%ld secondes, %s\n", t1, ctime(&t1));
+
