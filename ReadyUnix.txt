@@ -1,18 +1,38 @@
 #================================================
 # Commandes Unix | CentOs
 #================================================
-# grep
-export GSTRING="namespace"
-export GPATH=/opt/gSOAP/gsoap
-export GINCLUDE=--include=\*.h
-grep -inR $GINCLUDE0 $GSTRING $GPATH
+# curl
+#================================================
+curl –o myfile.ext http://site.mydmn.org/fichier.rpm
+curl –o mypage.html http://www.mysite.org/page.html
+curl –O http://site.mydmn.org/file1 -O http://site.mydmn.org/file2
+curl --remote-name http://site.mydmn.org/repo/epel/curlpp-0.7.3-5.el6.x86_64.rpm
+curl –u phil sftp://site-ssh.mydmn.org/file01
+curl –u phil: --key ~/.ssh/id_rsa --pubkey ~/.ssh/id_rsa.pub scp://site-ssh.mydmn.org
+curl ftp://phil:Passw0rd@ftp.mydmn.org:21/file01
+curl –v http://repo/mirrors.ircam.fr/
 
+GURL=https://www.it-connect.fr/curl-loutil-testeur-des-protocoles-divers/
+curl –v $GURL
+curl -B –v $GURL
+curl -iH "Accept: text/plain" $GURL
+curl $GURL | sed 's/<\/*[^>]*>//g'
 
+#================================================
+# lynx
+#================================================
+GURL=https://stackoverflow.com/questions/12422289/bash-command-to-convert-html-page-to-a-text-file
+lynx -dump $GURL
+lynx -dump $GURL | grep --
 
-
-
-
-
-
-
+#================================================
+# links
+#================================================
+GURL=\
+https://www.hostinger.fr/tutoriels/commandes-git/
+GSEARCH=git
+GINTERVAL=5
+links -dump $GURL
+links -dump $GURL | grep -in --color=auto "$GSEARCH"
+links -dump $GURL | grep -in --color=auto "$GSEARCH" -C"$GINTERVAL"
 

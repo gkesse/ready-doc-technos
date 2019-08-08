@@ -20,10 +20,11 @@ cp -f ${GCLASS_SRC}.h ${GCLASS_DST}.h
 chown -R centos:centos /home/centos
 chmod -R 700 /home/centos
 
-#================================================
-# C | Fonctions
-#================================================
-t1 = time(NULL);
-if (t1 == (time_t)-1)
-(void)printf("%ld secondes, %s\n", t1, ctime(&t1));
+./cmd_build.sh
+./cmd_clean.sh
+./cmd_compile.sh
+./cmd_run.sh
+
+make clean && make |& grep "warning"
+
 
