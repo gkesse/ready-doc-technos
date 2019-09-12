@@ -1,24 +1,48 @@
 # HTTPS | Debian
-Https est un monyen de sécurité d'accès à un site internet.
-Le but de ce tutoriel est de vous apprendre à configurer un site en https.
+Https est un monyen de sécuriser l'accès à un site internet.  
+Le but de ce tutoriel est de vous apprendre à configurer un site en https.  
+Produit par Gérard KESSE.
 
 ### J'active le module ssl
+```
 a2enmod ssl
+```
 
 ### J'active le module headers
+```
 a2enmod headers
+```
 
 ### Je recharge apache2
+```
 systemctl reload apache2
+```
 
+### Je vérifie le port 80 [ http ]
+```
 netstat -tanpu | grep "LISTEN" | grep "80"
-netstat -tanpu | grep "LISTEN" | grep "443"
+```
 
+### Je vérifie le port 443 [ https ]
+```
+netstat -tanpu | grep "LISTEN" | grep "443"
+```
+
+### Je mets à jour le système Debian
+```
 apt-get update
 apt-get upgrade
-apt-get install certbot
+```
 
+### Je install l'outil cerbot
+```
+apt-get install certbot
+```
+
+### J'arrête apache2
+```
 systemctl stop apache2
+```
 
 netstat -tanpu | grep "LISTEN" | grep "80"
 netstat -tanpu | grep "LISTEN" | grep "443"
