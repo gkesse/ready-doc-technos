@@ -18,12 +18,12 @@ a2enmod headers
 systemctl reload apache2
 ```
 
-### Je vérifie le port 80 [ http ]
+### Je vérifie le port 80
 ```
 netstat -tanpu | grep "LISTEN" | grep "80"
 ```
 
-### Je vérifie le port 443 [ https ]
+### Je vérifie le port 443
 ```
 netstat -tanpu | grep "LISTEN" | grep "443"
 ```
@@ -44,17 +44,28 @@ apt-get install certbot
 systemctl stop apache2
 ```
 
-netstat -tanpu | grep "LISTEN" | grep "80"
-netstat -tanpu | grep "LISTEN" | grep "443"
+> Je vérifie le port 80 
+> Je vérifie le port 443 
 
+### Je génère les clés de sécurité
+```
 certbot certonly --standalone --agree-tos --no-eff-email -d readydev.freeddns.org -d www.readydev.freeddns.org
 tiakagerard@hotmail.com
+```
 
+### Je note les clés de sécurité
+```
 /etc/letsencrypt/live/readydev.freeddns.org/fullchain.pem
 /etc/letsencrypt/live/readydev.freeddns.org/privkey.pem
+```
 
+### Je vérifie les clés de sécurité
+```
 ls -l /etc/letsencrypt/live/readydev.freeddns.org/
+```
 
+### Je configure la machine virtuelle
+```
 > /etc/apache2/sites-available/000-default.conf
 nano /etc/apache2/sites-available/000-default.conf
 
@@ -142,6 +153,12 @@ nano /etc/apache2/sites-available/000-default.conf
 
 > /etc/apache2/sites-available/default-ssl.conf
 nano /etc/apache2/sites-available/default-ssl.conf
+```
 
+### Je redémarre apache2
+```
 systemctl restart apache2
 systemctl reload apache2
+```
+
+### Je configure la génération automatique des clés
