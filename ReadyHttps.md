@@ -3,6 +3,11 @@ Https est un monyen de sécuriser l'accès à un site internet.
 Le but de ce tutoriel est de vous apprendre à configurer un site en https.  
 Produit par Gérard KESSE.
 
+Dans ce tutoriel, nous utiliserons, sous Debian:
+* apache2, comme serveur web
+* cerbot, comme outil de génération de clés https
+* nano, comme éditeur de texte
+
 ### J'active le module ssl
 ```
 a2enmod ssl
