@@ -1,10 +1,14 @@
-#================================================
 # HTTPS | Debian
-#================================================
-# configurer https
-#================================================
+Https est un monyen de sécurité d'accès à un site internet.
+Le but de ce tutoriel est de vous apprendre à configurer un site en https.
+
+### J'active le module ssl
 a2enmod ssl
+
+### J'active le module headers
 a2enmod headers
+
+### Je recharge apache2
 systemctl reload apache2
 
 netstat -tanpu | grep "LISTEN" | grep "80"
