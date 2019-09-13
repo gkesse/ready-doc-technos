@@ -4,6 +4,7 @@ Le but de ce tutoriel est de vous apprendre à configurer un site en https.
 Produit par Gérard KESSE.
 
 Dans ce tutoriel, nous utiliserons, sous Debian:
+
 * apache2, comme serveur web
 * cerbot, comme outil de génération de clés https
 * nano, comme éditeur de texte
@@ -177,8 +178,13 @@ deb http://raspbian.raspberrypi.org/raspbian stretch main contrib non-free rpi
 _EOF_
 
 systemctl stop apache2
+systemctl restart apache2
 
 ./certbot-auto renew
 
 certbot delete --cert-name readydev.dynu.net
 
+0 2 30 * * /opt/certbot-auto renew \
+–pre-hook « service nginx stop » \
+–post-hook « service nginx start » >> /var/log/certbot-renew.log | \
+mail -s « CERTBOT Renouvellement » tiakagerard@hotmail.com < /var/log/certbot-renew.log
