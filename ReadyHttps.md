@@ -8,43 +8,43 @@ Dans ce tutoriel, nous utiliserons, sous Debian:
 * cerbot, comme outil de génération de clés https
 * nano, comme éditeur de texte
 
-### J'active le module ssl
+*  J'active le module ssl
 ```
 a2enmod ssl
 ```
 
-### J'active le module headers
+* J'active le module headers
 ```
 a2enmod headers
 ```
 
-### Je recharge apache2
+* Je recharge apache2
 ```
 systemctl reload apache2
 ```
 
-### Je vérifie le port 80
+* Je vérifie le port 80
 ```
 netstat -tanpu | grep "LISTEN" | grep "80"
 ```
 
-### Je vérifie le port 443
+* Je vérifie le port 443
 ```
 netstat -tanpu | grep "LISTEN" | grep "443"
 ```
 
-### Je mets à jour le système Debian
+* Je mets à jour le système Debian
 ```
 apt-get update
 apt-get upgrade
 ```
 
-### Je install l'outil cerbot
+* Je install l'outil cerbot
 ```
 apt-get install certbot
 ```
 
-### J'arrête apache2
+* J'arrête apache2
 ```
 systemctl stop apache2
 ```
@@ -52,24 +52,24 @@ systemctl stop apache2
 > Je vérifie le port 80 
 > Je vérifie le port 443 
 
-### Je génère les clés de sécurité
+* Je génère les clés de sécurité
 ```
 certbot certonly --standalone --agree-tos --no-eff-email -d readydev.freeddns.org -d www.readydev.freeddns.org
 tiakagerard@hotmail.com
 ```
 
-### Je note les clés de sécurité
+* Je note les clés de sécurité
 ```
 /etc/letsencrypt/live/readydev.freeddns.org/fullchain.pem
 /etc/letsencrypt/live/readydev.freeddns.org/privkey.pem
 ```
 
-### Je vérifie les clés de sécurité
+* Je vérifie les clés de sécurité
 ```
 ls -l /etc/letsencrypt/live/readydev.freeddns.org/
 ```
 
-### Je configure la machine virtuelle
+* Je configure la machine virtuelle
 ```
 > /etc/apache2/sites-available/000-default.conf
 nano /etc/apache2/sites-available/000-default.conf
@@ -160,10 +160,25 @@ nano /etc/apache2/sites-available/000-default.conf
 nano /etc/apache2/sites-available/default-ssl.conf
 ```
 
-### Je redémarre apache2
+* Je redémarre apache2
 ```
 systemctl restart apache2
 systemctl reload apache2
 ```
 
-### Je configure la génération automatique des clés
+* Je vérifie les certificats et leurs dates d'expiration
+cd /opt/
+wget https://dl.eff.org/certbot-auto
+chmod a+x ./certbot-auto
+./certbot-auto certificates
+
+cat << _EOF_ > /etc/apt/sources.list
+deb http://raspbian.raspberrypi.org/raspbian stretch main contrib non-free rpi
+_EOF_
+
+systemctl stop apache2
+
+./certbot-auto renew
+
+certbot delete --cert-name readydev.dynu.net
+
