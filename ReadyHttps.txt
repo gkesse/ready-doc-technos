@@ -1,77 +1,33 @@
+#================================================
 # HTTPS | Debian
-Https est un monyen de sécuriser l'accès à un site internet.  
-Le but de ce tutoriel est de vous apprendre à configurer un site en https.  
-Produit par Gérard KESSE.
-
-Dans ce tutoriel, nous utiliserons, sous Debian:
-
-* apache2, comme serveur web
-* cerbot, comme outil de génération de clés https
-* nano, comme éditeur de texte
-
-*  J'active le module ssl
-```
+#================================================
 a2enmod ssl
-```
-
-* J'active le module headers
-```
 a2enmod headers
-```
 
-* Je recharge apache2
-```
 systemctl reload apache2
-```
 
-* Je vérifie le port 80
-```
 netstat -tanpu | grep "LISTEN" | grep "80"
-```
-
-* Je vérifie le port 443
-```
 netstat -tanpu | grep "LISTEN" | grep "443"
-```
 
-* Je mets à jour le système Debian
-```
 apt-get update
 apt-get upgrade
-```
 
-* Je install l'outil cerbot
-```
 apt-get install certbot
-```
 
-* J'arrête apache2
-```
 systemctl stop apache2
-```
 
-> Je vérifie le port 80 
-> Je vérifie le port 443 
+netstat -tanpu | grep "LISTEN" | grep "80"
+netstat -tanpu | grep "LISTEN" | grep "443"
 
-* Je génère les clés de sécurité
-```
-certbot certonly --standalone --agree-tos --no-eff-email -d readydev.freeddns.org -d www.readydev.freeddns.org
+certbot certonly --standalone --agree-tos --no-eff-email \
+-d readydev.freeddns.org -d www.readydev.freeddns.org
 tiakagerard@hotmail.com
-```
 
-* Je note les clés de sécurité
-```
 /etc/letsencrypt/live/readydev.freeddns.org/fullchain.pem
 /etc/letsencrypt/live/readydev.freeddns.org/privkey.pem
-```
 
-* Je vérifie les clés de sécurité
-```
 ls -l /etc/letsencrypt/live/readydev.freeddns.org/
-```
 
-* Je configure la machine virtuelle
-```
 > /etc/apache2/sites-available/000-default.conf
 nano /etc/apache2/sites-available/000-default.conf
 
@@ -159,18 +115,14 @@ nano /etc/apache2/sites-available/000-default.conf
 
 > /etc/apache2/sites-available/default-ssl.conf
 nano /etc/apache2/sites-available/default-ssl.conf
-```
 
-* Je redémarre apache2
-```
 systemctl restart apache2
 systemctl reload apache2
-```
 
-* Je vérifie les certificats et leurs dates d'expiration
 cd /opt/
 wget https://dl.eff.org/certbot-auto
 chmod a+x ./certbot-auto
+
 ./certbot-auto certificates
 
 cat << _EOF_ > /etc/apt/sources.list
@@ -184,7 +136,6 @@ systemctl restart apache2
 
 certbot delete --cert-name readydev.dynu.net
 
-0 2 30 * * /opt/certbot-auto renew \
-–pre-hook « service nginx stop » \
-–post-hook « service nginx start » >> /var/log/certbot-renew.log | \
-mail -s « CERTBOT Renouvellement » tiakagerard@hotmail.com < /var/log/certbot-renew.log
+crontab -l
+crontab -e
+0 2 30 * * /opt/certbot-auto renew –pre-hook "systemctl stop apache2" –post-hook "systemctl stop apache2" >> /var/log/certbot-renew.log | mail -s "CERTBOT Renouvellement" tiakagerard@hotmail.com < /var/log/certbot-renew.log
