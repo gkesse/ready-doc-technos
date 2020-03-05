@@ -1,48 +1,68 @@
 #================================================
 # HTTPS | Debian
 #================================================
+# activer ssl
 a2enmod ssl
+# activer headers
 a2enmod headers
 
+# recharger apache2
 systemctl reload apache2
 
+# verifier l'utilisation d'un port 
 netstat -tanpu | grep "LISTEN" | grep "80"
 netstat -tanpu | grep "LISTEN" | grep "443"
 
+# mettre à jour le systeme
 apt-get update
 apt-get upgrade
 
+# installer certbot
 apt-get install certbot
 
+# arreter apache2
 systemctl stop apache2
 
+# verifier l'utilisation d'un port 
 netstat -tanpu | grep "LISTEN" | grep "80"
 netstat -tanpu | grep "LISTEN" | grep "443"
 
+# générer un certificat
 certbot certonly --standalone --agree-tos --no-eff-email \
--d readydev.freeddns.org -d www.readydev.freeddns.org
+-d readydev.ovh -d www.readydev.ovh
+
+# infos
 tiakagerard@hotmail.com
+213.186.33.5
+79.83.171.178
+readydev.dynu.net
+readydev.freeddns.org
 
-/etc/letsencrypt/live/readydev.freeddns.org/fullchain.pem
-/etc/letsencrypt/live/readydev.freeddns.org/privkey.pem
+# infos
+/etc/letsencrypt/live/readydev.ovh/fullchain.pem
+/etc/letsencrypt/live/readydev.ovh/privkey.pem
 
-ls -l /etc/letsencrypt/live/readydev.freeddns.org/
+# vérifier la génération d'un certificat
+ls -l /etc/letsencrypt/live/readydev.ovh/
 
+# configurer un certificat dans apache2
 > /etc/apache2/sites-available/000-default.conf
 nano /etc/apache2/sites-available/000-default.conf
 
+# configurer une redirection
 <VirtualHost *:80>
-    ServerName readydev.freeddns.org
-    ServerAlias www.readydev.freeddns.org 
+    ServerName readydev.ovh
+    ServerAlias www.readydev.ovh 
     ServerAdmin tiakagerard@hotmail.com
     DocumentRoot /home/pi/Programs/ReadyStudio/ReadyDev/
     
-    Redirect permanent / https://readydev.freeddns.org/
+    Redirect permanent / https://readydev.ovh/
 </VirtualHost>
 
+# configurer un certificat
 <VirtualHost *:443>
-    ServerName readydev.freeddns.org
-    ServerAlias www.readydev.freeddns.org 
+    ServerName readydev.ovh
+    ServerAlias www.readydev.ovh 
     ServerAdmin tiakagerard@hotmail.com
     DocumentRoot /home/pi/Programs/ReadyStudio/ReadyDev/
 
@@ -55,9 +75,9 @@ nano /etc/apache2/sites-available/000-default.conf
     </Directory>
     
     SSLEngine on
-    SSLCertificateFile  /etc/letsencrypt/live/readydev.freeddns.org/cert.pem
-    SSLCertificateKeyFile   /etc/letsencrypt/live/readydev.freeddns.org/privkey.pem
-    SSLCertificateChainFile  /etc/letsencrypt/live/readydev.freeddns.org/chain.pem
+    SSLCertificateFile  /etc/letsencrypt/live/readydev.ovh/cert.pem
+    SSLCertificateKeyFile   /etc/letsencrypt/live/readydev.ovh/privkey.pem
+    SSLCertificateChainFile  /etc/letsencrypt/live/readydev.ovh/chain.pem
     
     SSLProtocol all -SSLv2 -SSLv3
     SSLCipherSuite ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-AES256-GCM-SHA384:DHE-RSA-AES128-GCM-SHA256:DHE-DSS-AES128-GCM-SHA256:kEDH+AESGCM:ECDHE-RSA-AES128-SHA256:ECDHE-ECDSA-AES128-SHA256:ECDHE-RSA-AES128-SHA:ECDHE-ECDSA-AES128-SHA:ECDHE-RSA-AES256-SHA384:ECDHE-ECDSA-AES256-SHA384:ECDHE-RSA-AES256-SHA:ECDHE-ECDSA-AES256-SHA:DHE-RSA-AES128-SHA256:DHE-RSA-AES128-SHA:DHE-DSS-AES128-SHA256:DHE-RSA-AES256-SHA256:DHE-DSS-AES256-SHA:DHE-RSA-AES256-SHA:AES128-GCM-SHA256:AES256-GCM-SHA384:AES128-SHA256:AES256-SHA256:AES128-SHA:AES256-SHA:AES:CAMELLIA:DES-CBC3-SHA:!aNULL:!eNULL:!EXPORT:!DES:!RC4:!MD5:!PSK:!aECDH:!EDH-DSS-DES-CBC3-SHA:!EDH-RSA-DES-CBC3-SHA:!KRB5-DES-CBC3-SHA
@@ -68,9 +88,10 @@ nano /etc/apache2/sites-available/000-default.conf
     Header always set Strict-Transport-Security "max-age=15768000"
 </VirtualHost>
 
-<VirtualHost *:8888>
-    ServerName readydev.freeddns.org
-    ServerAlias www.readydev.freeddns.org 
+# configurer un serveur dans apache2
+<VirtualHost *:8008>
+    ServerName readydev.ovh
+    ServerAlias www.readydev.ovh 
     ServerAdmin tiakagerard@hotmail.com
     DocumentRoot /var/www/html/
 
@@ -83,38 +104,6 @@ nano /etc/apache2/sites-available/000-default.conf
     </Directory>
 </VirtualHost>
 
-<VirtualHost *:8585>
-    ServerName egliseharristedefrance.com
-    ServerAlias www.egliseharristedefrance.com
-    ServerAdmin tiakagerard@hotmail.com
-    DocumentRoot /home/pi/Programs/ReadyStudio/ReadyHarriste/
-
-    <Directory /home/pi/Programs/ReadyStudio/ReadyHarriste/>
-        Options All
-        AllowOverride All
-        Order allow,deny
-        allow from all
-        Require all granted
-    </Directory>
-</VirtualHost>
-
-<VirtualHost *:8800>
-    ServerName readydev.freeddns.org
-    ServerAlias www.readydev.freeddns.org 
-    ServerAdmin tiakagerard@hotmail.com
-    DocumentRoot /home/pi/Programs/ReadyStudio/ReadyChurch/
-
-    <Directory /home/pi/Programs/ReadyStudio/ReadyChurch/>
-        Options All
-        AllowOverride All
-        Order allow,deny
-        allow from all
-        Require all granted
-    </Directory>
-</VirtualHost>
-
-> /etc/apache2/sites-available/default-ssl.conf
-nano /etc/apache2/sites-available/default-ssl.conf
 
 systemctl restart apache2
 systemctl reload apache2
@@ -123,8 +112,10 @@ cd /opt/
 wget https://dl.eff.org/certbot-auto
 chmod a+x ./certbot-auto
 
+# lister les certificats
 ./certbot-auto certificates
 
+# configurer les sources raspbian
 cat << _EOF_ > /etc/apt/sources.list
 deb http://raspbian.raspberrypi.org/raspbian stretch main contrib non-free rpi
 _EOF_
@@ -132,9 +123,12 @@ _EOF_
 systemctl stop apache2
 systemctl restart apache2
 
+# renouveller un certificat
 ./certbot-auto renew
 
+# suppprimer un certificat
 certbot delete --cert-name readydev.dynu.net
+certbot delete --cert-name readydev.freeddns.org
 
 crontab -l
 crontab -e

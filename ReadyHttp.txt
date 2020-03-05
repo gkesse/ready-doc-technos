@@ -40,6 +40,21 @@ nano /etc/httpd/conf.d/vhost.conf
 nano /var/www/html/ReadyHttp/index.html
 <h1 style="color:red">[ HTTP ] Bonjour tout le monde<h1>
 
+<VirtualHost *:8338>
+    ServerAdmin admin@readygitweb.com
+    ServerName readygitweb.com
+    ServerAlias www.readygitweb.com
+    DocumentRoot "/var/www/html/ReadyGitWeb/"
+    
+    <Directory "/var/www/html/ReadyGitWeb/">
+        Options All
+        AllowOverride All
+        Order allow,deny
+        allow from all
+        Require all granted
+    </Directory>
+</VirtualHost>
+
 systemctl enable httpd
 systemctl restart httpd
 
