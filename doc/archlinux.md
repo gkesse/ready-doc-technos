@@ -19,6 +19,18 @@ Sa philosophie repose sur 3 points :
 
 Nous présentons dans ce tutoriel des commandes utiles sous Arch Linux.
 
+* [Introduction][Introduction]
+* [Serveur SSH][Serveur SSH]
+* [Serveur X11][Serveur X11]
+
+### Introduction
+
+Noter les identifiants de connexion
+```
+Login: osboxes
+Password: osboxes.org
+```
+
 Passer en mode superutilisateur
 ```
 su
@@ -62,6 +74,28 @@ shutdown -r now
 ```
 
 ### Serveur SSH
+
+Installer le serveur ssh
+```
+pacman -S openssh
+```
+
+Afficher l'état du serveur ssh
+```
+systemctl status sshd
+```
+
+Démarrer le du serveur ssh
+```
+systemctl start sshd
+```
+
+Afficher l'adresse ip
+```
+ip a s
+```
+
+### Serveur X11
 
 Installer le serveur ssh
 ```
