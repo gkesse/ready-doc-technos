@@ -7,7 +7,7 @@ Avec à la fois des compétences en Systèmes Embarqués et en Robotique.
 
 * Site Web : [ReadyDev](https://readydev.ovh "Accédez à mon site web (ReadyDev)")
 * Email : [tiakagerard@hotmail.com](mailto:tiakagerard@hotmail.com?subject=Contact&body=Bonjour "Me contactez par email")
-* Localité : **Toulouse - France**
+* Localité : **Strasbourg - France**
 
 # Liens Utiles
 
