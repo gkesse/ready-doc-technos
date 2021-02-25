@@ -9,15 +9,11 @@ Avec à la fois des compétences en Systèmes Embarqués et en Robotique.
 * Email : [tiakagerard@hotmail.com](mailto:tiakagerard@hotmail.com?subject=Contact&body=Bonjour "Me contactez par email")
 * Localité : **Strasbourg - France**
 
-### Arch Linux
+### Xenomai
 
-Arch Linux est une distribution Linux qui met l'accent sur la simplicité.  
-Sa philosophie repose sur 3 points :
-* Rester simple
-* Demeurer centré sur l'utilisateur. 
-* Respecter la philosophie libre et communautaire. 
+Xenomai est gestionnaire de contrainte temps réel sous Linux. 
 
-Nous présentons dans ce tutoriel des commandes utiles sous Arch Linux.
+Nous présentons dans ce tutoriel des commandes utiles sous Xenomai.
 
 Passer en mode superutilisateur
 ```sh
@@ -33,13 +29,7 @@ Changer la dispoition du clavier permanemment
 ```sh
 sudo nano /etc/vconsole.conf
 KEYMAP=fr
-```
-
-Configurer le gestionnaire de chiffrement
-```sh
-nano /etc/pacman.d/gnupg/gpg.conf
-keyserver hkp://pool.sks.keyservers.net:80
-pacman -S archlinux-keyring
+sudo shutdown -h now
 ```
 
 Mettre à jour le système
