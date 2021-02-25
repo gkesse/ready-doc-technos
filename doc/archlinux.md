@@ -19,6 +19,21 @@ Sa philosophie repose sur 3 points :
 
 Nous présentons dans ce tutoriel des commandes utiles sous Arch Linux.
 
+Passer en mode superutilisateur
+```sh
+su
+```
+
+Changer la dispoition dispoition du clavier 
+```sh
+sudo loadkeys fr
+```
+
+Mettre à jour le système
+```sh
+pacman -Syu
+```
+
 ### Configuration temporaire de la disposition du clavier
 
 La commande `loadkeys` permet de changer la dispoition du clavier.
@@ -41,8 +56,8 @@ sudo shutdown -h now
 ### Configuration du chiffrement
 
 Le concept du chiffrement est un système de sécurité.  
-GnuPG est un gestionnaire de chiffrement basé sur OpenPGP.
-
+GnuPG est un gestionnaire de chiffrement basé sur OpenPGP.  
+Il est intervient au moment de la mise à jour ou de l'installation d'un
 
 ### Liens
 
