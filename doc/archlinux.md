@@ -16,7 +16,9 @@ Sa philosophie repose sur 3 points :
 * Rester simple
 * Demeurer centré sur l'utilisateur. 
 * Respecter la philosophie libre et communautaire. 
-    
+
+Nous présentons dans ce tutoriel des commandes utiles sous Arch Linux.
+
 ### Configuration temporaire de la disposition du clavier
 
 La commande `loadkeys` permet de changer la dispoition du clavier.
@@ -38,7 +40,11 @@ sudo shutdown -h now
 
 ### Configuration du chiffrement
 
+Le concept du chiffrement est un système de sécurité.  
+GnuPG est un gestionnaire de chiffrement basé sur OpenPGP.
+
 
 ### Liens
 
 * [https://archlinux.org/pacman/pacman-key.8.html](https://archlinux.org/pacman/pacman-key.8.html)
+* [https://archlinux.org/news/gnupg-21-and-the-pacman-keyring/](https://archlinux.org/news/gnupg-21-and-the-pacman-keyring/)
