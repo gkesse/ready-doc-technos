@@ -20,49 +20,49 @@ Sa philosophie repose sur 3 points :
 Nous présentons dans ce tutoriel des commandes utiles sous Arch Linux.
 
 Passer en mode superutilisateur
-```sh
+```
 su
 ```
 
 Changer la dispoition du clavier temporairement
-```sh
+```
 sudo loadkeys fr
 ```
 
 Changer la dispoition du clavier permanemment
-```sh
+```
 sudo nano /etc/vconsole.conf
 KEYMAP=fr
 ```
 
 Configurer le gestionnaire de chiffrement
-```sh
+```
 nano /etc/pacman.d/gnupg/gpg.conf
 keyserver hkp://pool.sks.keyservers.net:80
 ```
 
 Mettre à jour les clés de chiffrement
-```shell
+```
 pacman -S archlinux-keyring
 ```
 
 Mettre à jour le système
-```sh
+```
 pacman -Syu
 ```
 
 Eteindre le système
-```sh
+```
 shutdown -h now
 ```
 
 Redémarrer le système
-```sh
+```
 shutdown -r now
 ```
 
 Installer le serveur ssh
-```sh
+```
 pacman -S openssh
 ```
 
