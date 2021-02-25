@@ -66,6 +66,11 @@ Installer le serveur ssh
 pacman -S openssh
 ```
 
+Afficher l'adresse ip
+```
+ip a s
+```
+
 ### Liens
 
 * [https://arcolinux.com/fix-for-key-could-not-be-looked-up-remotely/](https://arcolinux.com/fix-for-key-could-not-be-looked-up-remotely/)
