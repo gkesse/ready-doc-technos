@@ -1,0 +1,51 @@
+#================================================
+# cv::face::FaceRecognizer
+#================================================
+bool virtuel empty () const CV_OVERRIDE = 0
+
+chaîne virtuelle getLabelInfo (int label) const
+Obtient les informations de chaîne par étiquette. Plus...
+
+virtual std :: vector <int> getLabelsByString (const String & str) const
+Obtient le vecteur d'étiquettes par chaîne. Plus...
+
+virtuel double getThreshold () const = 0
+accesseur de paramètre de seuil - requis pour le collecteur BestMinDist par défaut Plus ...
+
+int pred (InputArray src) const
+
+void predite (InputArray src, int & label, double & confidence) const
+Prédit une étiquette et la confiance associée (par exemple la distance) pour une image d'entrée donnée. Plus...
+
+prédiction de vide virtuel (InputArray src, collecteur Ptr <PredictCollector>) const = 0
+
+
+si implémenté - envoyer tous les résultats de la prédiction au collecteur qui peuvent être utilisés pour une gestion des résultats personnalisée
+
+Plus...
+
+lecture virtuelle nulle (const String & filename)
+Charge un FaceRecognizer et son état de modèle. Plus...
+
+lecture vide virtuelle (const FileNode & fn) CV_OVERRIDE = 0
+
+virtual void setLabelInfo (int label, const String & strInfo)
+Définit les informations de chaîne pour l'étiquette du modèle spécifié. Plus...
+
+vide virtuel setThreshold (double val) = 0
+Définit le seuil du modèle. Plus...
+
+train de vides virtuel (InputArrayOfArrays src, étiquettes InputArray) = 0
+Forme un FaceRecognizer avec des données données et des étiquettes associées. Plus...
+
+mise à jour du vide virtuel (InputArrayOfArrays src, étiquettes InputArray)
+Met à jour un FaceRecognizer avec les données fournies et les étiquettes associées. Plus...
+
+écriture virtuelle vide (const Chaîne et nom de fichier) const
+Enregistre un FaceRecognizer et son état de modèle. Plus...
+
+écriture virtuelle vide (FileStorage & fs) const CV_OVERRIDE = 0
+Envoyer des commentaires
+Historique
+Enregistré
+Communauté

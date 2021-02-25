@@ -1,0 +1,51 @@
+#================================================
+# VirtualBox | Windows | CentOs
+#================================================
+
+Nom
+Alpha
+Dossier de la machine
+C:\Users\Admin\VirtualBox VMs
+Type
+Linux
+Version
+Red Hat (64-bit)
+Taille de la memoire
+1024 Mo
+Disque dur
+Creer un disque virtuel maintenant
+Type de fichier du disque
+VMDK (Disque de mahine virtuelle)
+Stockage sur disque dur physique
+Taille fixe
+Emplacement du fichier et taille
+C:\Users\Admin\VirtualBox VMs\Alpha\Alpha.vmdk
+20 Gio
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
