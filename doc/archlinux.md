@@ -61,9 +61,21 @@ Redémarrer le système
 shutdown -r now
 ```
 
+### Serveur SSH
+
 Installer le serveur ssh
 ```
 pacman -S openssh
+```
+
+Afficher l'état du serveur ssh
+```
+systemctl status sshd
+```
+
+Démarrer le du serveur ssh
+```
+systemctl start sshd
 ```
 
 Afficher l'adresse ip
