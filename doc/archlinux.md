@@ -39,6 +39,10 @@ Configurer le gestionnaire de chiffrement
 ```sh
 nano /etc/pacman.d/gnupg/gpg.conf
 keyserver hkp://pool.sks.keyservers.net:80
+```
+
+Mettre à jour les clés de chiffrement
+```shell
 pacman -S archlinux-keyring
 ```
 
