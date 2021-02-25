@@ -19,9 +19,9 @@ Sa philosophie repose sur 3 points :
 
 Nous présentons dans ce tutoriel des commandes utiles sous Arch Linux.
 
-* [Introduction][Introduction]
-* [Serveur SSH][Serveur SSH]
-* [Serveur X11][Serveur X11]
+* [Introduction](#ntroduction)
+* [Serveur SSH](#Serveur-ssh)
+* [Serveur X11](#serveur-x11)
 
 ### Introduction
 
