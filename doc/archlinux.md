@@ -8,7 +8,7 @@ sudo loadkeys fr
 
 ### Configuration permanente de la disposition du clavier
 
-Le fichier `/etc/vconsole.conf` permet de configurer la dispoition du clavier. 
+Le fichier `/etc/vconsole.conf` permet de configurer la dispoition du clavier.  
 Il est lu par `systemd` au démarrage du système.
 
 ```sh
