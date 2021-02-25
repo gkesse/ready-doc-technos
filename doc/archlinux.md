@@ -64,5 +64,4 @@ pacman -S openssh
 
 ### Liens
 
-* [https://archlinux.org/pacman/pacman-key.8.html](https://archlinux.org/pacman/pacman-key.8.html)
-* [https://archlinux.org/news/gnupg-21-and-the-pacman-keyring/](https://archlinux.org/news/gnupg-21-and-the-pacman-keyring/)
+* [https://arcolinux.com/fix-for-key-could-not-be-looked-up-remotely/](https://arcolinux.com/fix-for-key-could-not-be-looked-up-remotely/)
