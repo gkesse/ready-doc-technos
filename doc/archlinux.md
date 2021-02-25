@@ -24,9 +24,16 @@ Passer en mode superutilisateur
 su
 ```
 
-Changer la dispoition dispoition du clavier 
+Changer la dispoition du clavier temporairement
 ```sh
 sudo loadkeys fr
+```
+
+Changer la dispoition du clavier permanemment
+```sh
+sudo nano /etc/vconsole.conf
+KEYMAP=fr
+sudo shutdown -h now
 ```
 
 Mettre à jour le système
@@ -34,30 +41,20 @@ Mettre à jour le système
 pacman -Syu
 ```
 
-### Configuration temporaire de la disposition du clavier
-
-La commande `loadkeys` permet de changer la dispoition du clavier.
-
+Eteindre le système
 ```sh
-sudo loadkeys fr
+shutdown -h now
 ```
 
-### Configuration permanente de la disposition du clavier
-
-Le fichier `/etc/vconsole.conf` permet de configurer la dispoition du clavier.  
-Il est lu par `systemd` à chaque démarrage du système.
-
+Redémarrer le système
 ```sh
-sudo nano /etc/vconsole.conf
-KEYMAP=fr
-sudo shutdown -h now
+shutdown -r now
 ```
 
-### Configuration du chiffrement
-
-Le concept du chiffrement est un système de sécurité.  
-GnuPG est un gestionnaire de chiffrement basé sur OpenPGP.  
-Il est intervient au moment de la mise à jour ou de l'installation d'un
+Installer le serveur ssh
+```sh
+pacman -S openssh
+```
 
 ### Liens
 
