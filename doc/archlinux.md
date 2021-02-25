@@ -11,7 +11,7 @@ Avec à la fois des compétences en Systèmes Embarqués et en Robotique.
 
 ### Arch Linux
 
-Arch Linux est une distribution Linux qui met l'accent sur la simplicité. 
+Arch Linux est une distribution Linux qui met l'accent sur la simplicité.  
 Sa philosophie repose sur 3 points :
 * Rester simple
 * Demeurer centré sur l'utilisateur. 
