@@ -16,14 +16,16 @@ Ubuntu est une distribution Linux.
 Nous présentons dans ce tutoriel des commandes utiles sous Ubuntu.
 
 ```
+# identifiants
 Login : osboxes
 Password : osboxes.org
 
+# superutilisateur
 sudo -i
 
+# clavier
 setxkbmap fr
 
+# ssh
 apt install openssh-server
-
-
 ```
