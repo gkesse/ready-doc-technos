@@ -49,13 +49,17 @@ KEYMAP=fr
 
 Configurer le gestionnaire de chiffrement
 ```
+rm -rf /etc/pacman.d/gnupg/gpg.conf
+pacman-key --init
 nano /etc/pacman.d/gnupg/gpg.conf
-keyserver hkp://pool.sks.keyservers.net:80
+keyserver hkp://pool.sks-keyservers.net:80
 ```
 
 Mettre à jour les clés de chiffrement
 ```
 pacman -S archlinux-keyring
+pacman --populate archlinux
+pacman --refresh-keys
 ```
 
 Mettre à jour le système
@@ -97,26 +101,24 @@ ip a s
 
 ### Serveur X11
 
-Installer le serveur ssh
+Installer le serveur x11
 ```
-pacman -S openssh
-```
-
-Afficher l'état du serveur ssh
-```
-systemctl status sshd
+pacman -S xorg-server
+pacman -S xorg-xinit
 ```
 
-Démarrer le du serveur ssh
+Installer les pilotes graphiques
 ```
-systemctl start sshd
-```
-
-Afficher l'adresse ip
-```
-ip a s
+pacman -S xf86-video-vesa
 ```
 
-### Liens
-
-* [https://arcolinux.com/fix-for-key-could-not-be-looked-up-remotely/](https://arcolinux.com/fix-for-key-could-not-be-looked-up-remotely/)
+Installer les polices
+```
+pacman -S xorg-fonts-type1
+pacman -S ttf-dejavu
+pacman -S font-bh-ttf
+pacman -S gsfonts
+pacman -S sdl_ttf
+pacman -S ttf-bitstream-vera
+pacman -S ttf-liberation
+```
