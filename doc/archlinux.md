@@ -1,4 +1,4 @@
-### Auteur
+# Auteur
 
 Je suis 
 [Gerard KESSE](https://readydev.ovh/presentation/ "Accédez à mon site web (ReadyDev)"),  
@@ -9,7 +9,7 @@ Avec à la fois des compétences en Systèmes Embarqués et en Robotique.
 * Email : [tiakagerard@hotmail.com](mailto:tiakagerard@hotmail.com?subject=Contact&body=Bonjour "Me contactez par email")
 * Localité : **Strasbourg - France**
 
-### Arch Linux
+# Arch Linux
 
 Arch Linux est une distribution Linux qui met l'accent sur la simplicité.  
 Sa philosophie repose sur 3 points :
@@ -23,7 +23,7 @@ Nous présentons dans ce tutoriel des commandes utiles sous Arch Linux.
 * [Serveur SSH](#Serveur-ssh)
 * [Serveur X11](#serveur-x11)
 
-### Introduction
+# Introduction
 
 Noter les identifiants de connexion
 ```
@@ -77,7 +77,7 @@ Redémarrer le système
 shutdown -r now
 ```
 
-### Serveur SSH
+# Serveur SSH
 
 Installer le serveur ssh
 ```
@@ -99,7 +99,7 @@ Afficher l'adresse ip
 ip a s
 ```
 
-### Serveur X11
+# Serveur X11
 
 Installer le serveur x11
 ```
