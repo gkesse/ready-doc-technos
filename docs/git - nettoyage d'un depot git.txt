@@ -1,0 +1,6 @@
+GPWD=$PWD
+GREPO=~/devs/cpp/ready-cpp-lib-dev
+cd $GREPO
+git checkout .
+git clean -df
+cd $GPWD

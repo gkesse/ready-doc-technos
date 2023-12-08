@@ -1,0 +1,31 @@
+https://stackoverflow.com/questions/56046062/linux-addr2line-command-returns-0/63856113#63856113
+
+https://stackoverflow.com/questions/11579509/wrong-line-numbers-from-addr2line/63841497#63841497
+
+#0  titi () at ../src/main.cpp:18
+#1  0x0000555555555ed7 in tata () at ../src/main.cpp:12
+#2  0x0000555555555ec7 in toto () at ../src/main.cpp:8
+#3  0x0000555555555f27 in main (_argc=1, _argv=0x7fffffffdca8) at ../src/main.cpp:23
+
+admins@gkesse-pc:~/devs/cpp/ready-cpp-lib-dev/code/cmd$ addr2line --info
+addr2line: unrecognized option '--info'
+Usage: addr2line [option(s)] [addr(s)]
+ Convert addresses into line number/file name pairs.
+ If no addresses are specified on the command line, they will be read from stdin
+ The options are:
+  @<file>                Read options from <file>
+  -a --addresses         Show addresses
+  -b --target=<bfdname>  Set the binary file format
+  -e --exe=<executable>  Set the input file name (default is a.out)
+  -i --inlines           Unwind inlined functions
+  -j --section=<name>    Read section-relative offsets instead of addresses
+  -p --pretty-print      Make the output easier to read for humans
+  -s --basenames         Strip directory names
+  -f --functions         Show function names
+  -C --demangle[=style]  Demangle function names
+  -R --recurse-limit     Enable a limit on recursion whilst demangling.  [Default]
+  -r --no-recurse-limit  Disable a limit on recursion whilst demangling
+  -h --help              Display this information
+  -v --version           Display the program's version
+
+addr2line: supported targets: elf64-x86-64 elf32-i386 elf32-iamcu elf32-x86-64 pei-i386 pe-x86-64 pei-x86-64 elf64-l1om elf64-k1om elf64-little elf64-big elf32-little elf32-big pe-bigobj-x86-64 pe-i386 srec symbolsrec verilog tekhex binary ihex plugin
