@@ -7,7 +7,7 @@ https://stackoverflow.com/questions/11579509/wrong-line-numbers-from-addr2line/6
 #2  0x0000555555555ec7 in toto () at ../src/main.cpp:8
 #3  0x0000555555555f27 in main (_argc=1, _argv=0x7fffffffdca8) at ../src/main.cpp:23
 
-admins@gkesse-pc:~/devs/cpp/ready-cpp-lib-dev/code/cmd$ addr2line --info
+addr2line --info
 addr2line: unrecognized option '--info'
 Usage: addr2line [option(s)] [addr(s)]
  Convert addresses into line number/file name pairs.
