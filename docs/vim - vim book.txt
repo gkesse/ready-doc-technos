@@ -655,6 +655,193 @@ vous pouvez utiliser un
 préfixe numérique pour passer plusieurs mots. Par exemple, 4b recule de quatre mots.
 La figure 2.1 montre le fonctionnement de ces commandes.
 
+Se déplacer au début ou à la fin d'une ligne
+
+La commande $ déplace le curseur à la fin d'une ligne. En fait, un trousseau de clés
+mapper à la commande « fin de ligne ». Les noms Vim de ces clés sont $, <End>,
+et <kFin>. (La touche <kEnd> est le nom donné par Vim à la touche Fin du clavier.)
+La commande $ prend également un argument numérique. S'il est présent, 
+il amène l'éditeur à
+passer à la fin de la ligne suivante. Par exemple, 1$ vous amène à la fin du premier
+ligne (celle sur laquelle vous vous trouvez), 2$ jusqu'à la fin de la ligne suivante, et ainsi de suite. La figure 2.2 illustre
+comment fonctionne cette commande.
+La commande ^ se déplace vers le premier caractère non vide de la ligne. Le <Home> ou
+La touche <kHome> se déplace vers le premier caractère de la ligne, 
+comme le montre la figure 2.3. (Le 0
+La commande [zéro] fait la même chose.)
+Comme toutes les autres commandes évoquées précédemment, 
+ces trois commandes peuvent prendre un certain temps.
+argument numérique. Ils n’en font rien, mais vous pouvez le spécifier si vous
+vouloir.
+
+Recherche sur une seule ligne
+
+Le déménagement est l’activité d’édition la plus courante que vous effectuez. 
+L'une des commandes de mouvement les plus utiles est la commande de recherche 
+à un seul caractère. La commande fx (forward
+search) recherche dans la ligne le seul caractère x.
+Supposons, par exemple, que vous soyez au début de la ligne suivante :
+
+To err is human. To really foul up you need a computer.
+
+Supposons que vous souhaitiez accéder au h de human. 
+Exécutez simplement la commande fh et le curseur sera positionné sur le h :
+
+To err is human. To really foul up you need a computer.
+
+Pour aller jusqu'à la fin du mot really, utilisez la commande fy.
+
+Vous pouvez spécifier un décompte ;
+par conséquent, vous pouvez avancer de cinq mots en utilisant 
+la commande 5f<Espace> :.
+
+Note:
+cela ne déplace que cinq caractères d'espacement, pas cinq mots. 
+S'il y a plusieurs espaces entre
+mots, cela ne fera pas bouger cinq mots !
+
+To err is human. To really foul up you need a computer.
+
+La commande F recherche vers la gauche. La figure 2.4 montre l'effet de f et F
+commandes.
+La commande tx (search 'til) fonctionne comme la commande fx, 
+sauf qu'elle arrête un caractère avant le caractère indiqué. 
+La version arrière de cette commande est Tx.
+La figure 2.5 montre le fonctionnement de ces commandes.
+
+Parfois, vous lancez une recherche et vous vous rendez compte que vous avez 
+tapé la mauvaise commande. Vous tapez f pour effectuer une recherche en arrière, 
+par exemple, pour vous rendre compte que vous avez réellement tapé la mauvaise commande.
+signifiait F. Pour abandonner une recherche, appuyez sur <Esc> 
+comme touche de recherche. Donc f<Esc> est une recherche avant interrompue. 
+(Remarque : <Esc> annule la plupart des opérations, pas seulement les recherches.)
+
+Passer à une ligne spécifique
+
+Si vous êtes un programmeur C ou C++, vous connaissez les messages d'erreur tels que
+suivant:
+
+prog.c:3: ’j’ undeclared (first use in this function)
+prog.c:3 : 'j' non déclaré (première utilisation dans cette fonction)
+
+Cela vous indique que vous souhaiterez peut-être réparer quelque chose sur la ligne 3. 
+Alors, comment trouvez-vous
+ligne 3 ?
+Une solution consiste à faire un 9999k pour aller en haut du fichier et un 2j 
+pour descendre de deux
+lignes. Ce n'est pas une bonne méthode, mais cela fonctionne.
+Une bien meilleure façon de faire est d'utiliser la commande G. Avec un argument,
+cette commande vous positionne au numéro de ligne donné. Par exemple, la 3G vous permet
+ligne 3. (De même, utilisez la commande 1G pour aller en haut du fichier 
+plutôt que 9999k.)
+Sans argument, il vous positionne à la fin du fichier.
+(Pour une meilleure façon de parcourir la liste d'erreurs d'un compilateur, 
+voir le chapitre 7,
+« Commandes pour les programmeurs », pour plus d'informations sur les éléments 
+:make et :clist
+commandes.)
+
+Indiquer où vous êtes dans un fichier
+
+Comment savoir réellement où l'on se trouve dans un fichier ? 
+Vous pouvez le faire de plusieurs manières.
+La première consiste à activer la numérotation des lignes avec la commande suivante 
+(voir Figure 2.6) :
+
+:set number
+
+L'éditeur Vim est hautement configurable et propose un grand nombre d'options. 
+Vous pouvez utiliser
+la commande :set de différentes manières, décrites au chapitre 28,
+« Personnalisation de l'apparence et du comportement de l'éditeur ».
+L'option numérique est une option booléenne, ce qui signifie qu'elle peut être activée 
+ou désactivée.
+allumé, utilisez cette commande :
+
+:set number
+
+Pour le désactiver, utilisez cette commande :
+
+:set nonumber
+
+Où suis-je?
+
+La commande CTRL-G affiche une ligne d'état qui indique où vous vous trouvez 
+dans le fichier. Pour
+exemple:
+
+"c02.txt" [Modified] line 81 of 153 —52%— col 1
+«c02.txt» [Modifié] ligne 81 sur 153 —52%— col 1
+
+Cela indique que vous éditez un fichier appelé c02.txt et qu'il a été modifié
+depuis le début du montage. Le curseur est positionné sur la ligne 81 sur un total 
+de 153, soit
+environ 52 % du chemin parcouru dans le fichier. Le curseur se trouve 
+actuellement dans la colonne 1.
+
+Note
+
+Ces numéros de ligne sont uniquement destinés à votre information ; 
+ils ne sont pas écrits dans le fichier lorsque vous quittez
+
+Parfois, vous verrez un numéro de colonne fractionné (par exemple, colonnes 2 à 9).
+Cela indique que le curseur est positionné sur le caractère 2. 
+Mais comme le premier caractère est une tabulation,
+la colonne de l'écran est 9.
+La figure 2.8 montre les résultats d'une commande CTRL-G typique.
+
+Faire défiler vers le haut et vers le bas
+
+La commande CTRL-U fait défiler vers le haut un demi-écran de texte.
+(Dans ce cas, le haut est en arrière dans
+le fichier; le texte descend sur l'écran. Ne vous inquiétez pas si vous avez 
+un petit problème
+se souvenir de quelle fin se termine. La plupart des programmeurs ont le même problème.)
+La commande CTRL-D vous fait défiler vers le bas d'un demi-écran.
+La figure 2.9 montre le fonctionnement de ces deux commandes.
+
+Supprimer du texte
+
+Comme vous l'avez appris au chapitre 1, la commande dd supprime une ligne. 
+La commande dw supprime
+un mot. Vous pouvez reconnaître la commande w comme la commande de déplacement de mot. 
+En fait, le d
+La commande peut être suivie de n'importe quelle commande de mouvement, 
+et elle supprime du courant 
+emplacement à l’endroit où le curseur se termine. (Par conséquent, nous disons 
+la syntaxe du d
+la commande est la dmotion.)
+La commande 3w, par exemple, déplace le curseur sur trois mots. La commande d3w supprime trois mots, comme le montre la figure 2.10. (Vous pouvez l'écrire sous la forme d3w ou 3dw ; les deux
+les versions fonctionnent de la même manière.)
+
+La commande $ se déplace à la fin d'une ligne. La commande d$ supprime du curseur
+jusqu'à la fin de la ligne, comme le montre la figure 2.11. 
+Un raccourci pour cela est la commande D.
+
+Où mettre le décompte (3dw ou d3w)
+
+Les commandes 3dw et d3w suppriment trois mots. Si vous voulez être vraiment 
+pointilleux sur
+choses, la première commande, 3dw, supprime un mot trois fois ; 
+la commande d3w supprime
+trois mots une fois. C'est une différence sans distinction.
+Cependant, vous pouvez en fait mettre deux comptes (par exemple, 3d2w). 
+Cette commande
+supprime deux mots, répétés trois fois, pour un total de six mots.
+
+Changer le texte
+
+La commande c change le texte. Elle agit exactement comme la commande d, 
+sauf qu'elle vous laisse
+mode insertion. Par exemple, cw change un mot. Ou plus précisément, il supprime un mot
+puis vous met en mode insertion. La figure 2.12 illustre le fonctionnement 
+de cette commande.
+Il y a un dicton qui dit que pour chaque problème il y a une réponse simple, claire et
+faux.C'est le cas de l'exemple utilisé ici pour la commande cw.Le cmotion
+La commande fonctionne exactement comme la commande dmotion, à une exception près : 
+les commandes cw et dw
+commandes. Alors que cw supprime le texte jusqu'à l'espace qui suit le mot (puis
+passe en mode insertion), la commande dw supprime le mot et l'espace qui le suit.
 
 #================================================
 ### Fin
